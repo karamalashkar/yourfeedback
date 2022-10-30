@@ -31,4 +31,8 @@ class Business extends Model
     public function userFeedback(){
         return $this->belongsToMany(User::class,'feedbacks')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
     }
+
+    public function feedback(){
+        return $this->belongsTo(Feedback::class);
+    }
 }
