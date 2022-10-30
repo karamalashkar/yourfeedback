@@ -11,7 +11,8 @@ Route::group(["prefix"=> "user"], function(){
 
 Route::group(["prefix"=> "business"], function(){
     Route::get('/get_business/{id}',[BusinessController::class,'getBusiness']);
-    Route::post('/edit_business',[BusinessController::class,'editBusiness']);        
+    Route::post('/edit_business',[BusinessController::class,'editBusiness']);
+    Route::get('/business_category/{id}',[BusinessController::class,'businessByCategory']);        
 });
 
 Route::post('/add_user',[UserController::class,'addUser']);
