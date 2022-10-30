@@ -108,4 +108,20 @@ class UserController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function feedback(Request $request){
+        $user_id=$request->user_id;
+        $business_id=$request->business_id;
+        $survey_id=$request->survey_id;
+        $question_id=$request->question_id;
+        $answer=$request->answer;
+
+        $user=User::find($user_id);
+        $response=$user->businessFeedback()
+        ->attach($business_id,['survey_id'=>$survey_id,'question_id'=>$question_id,'answer'=>$answer]);
+        
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
 }
