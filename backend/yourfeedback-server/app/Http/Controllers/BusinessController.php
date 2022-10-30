@@ -32,7 +32,7 @@ class BusinessController extends Controller
     }
 
     function editBusiness(Request $request){
-        $user_id=$request->user_id;
+        $business_id=$request->business_id;
         $bio=$request->bio;
 
         //base 64 to image
@@ -40,15 +40,32 @@ class BusinessController extends Controller
         $explodeImage = explode("image/", $base64Image[0]);
         $imageType = $explodeImage[1];
         $image_base64 = base64_decode($base64Image[1]);
-        $imageName = $user_id.'.'.'png';
+        $imageName = $business_id.'.'.'png';
         \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
 
-        $business=Business::where('id',$user_id)
+        $business=Business::where('id',$business_id)
         ->update(['bio'=>$bio,'image'=>$imageName]);
 
         if($business){
             return response()->json([
                 'status' => 'success'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function getBusiness(Request $request){
+        $business_id=$request->id;
+
+        $business=Business::find($business_id);
+
+        if($business){
+            return response()->json([
+                'status' => 'success',
+                'data' => $business
             ]);
         }
 
