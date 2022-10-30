@@ -36,4 +36,8 @@ class User extends Authenticatable
     public function businessDiscount(){
         return $this->belongsToMany(Business::class,'discounts')->withPivot(['value'])->withTimestamps();
     }
+
+    public function discount(){
+        return $this->belongsTo(Discount::class);
+    }
 }
