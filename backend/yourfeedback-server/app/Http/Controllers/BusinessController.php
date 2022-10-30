@@ -91,5 +91,26 @@ class BusinessController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function nearBusiness(Request $request){
+        $latitude=$request->latitude;
+        $longitude=$request->longitude;
+        
+        $response = Business::selectRaw('*, ( 6367 * acos( cos( radians( '.$latitude.' ) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians( '.$longitude.' ) ) + sin( radians( '.$latitude.' ) ) * sin( radians( latitude ) ) ) ) AS distance')
+        ->having('distance', '<', 5000)
+        ->orderBy('distance')
+        ->get();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
 
