@@ -27,4 +27,21 @@ class UserController extends Controller
             'status' => 'success'
         ]);
     }
+
+    function getUser(Request $request){
+        $user_id=$request->id;
+
+        $user=User::find($user_id);
+
+        if($user){
+            return response()->json([
+                'status' => 'success',
+                'data' => $user
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
