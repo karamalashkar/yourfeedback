@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\Business;
 use App\Models\Discount;
+use App\Models\Feedback;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -43,7 +44,7 @@ class User extends Authenticatable
     }
 
     public function businessFeedback(){
-        return $this->belongsToMany(Business::class,'feedbacks')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
+        return $this->belongsToMany(Business::class,'feedback')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
     }
 
     public function feedback(){
