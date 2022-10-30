@@ -10,6 +10,7 @@ Route::group(["prefix"=> "user"], function(){
     Route::get('/question_category/{id}',[UserController::class,'questionByCategory']);
     Route::post('/discount',[UserController::class,'discount']);
     Route::get('/get_discount/{id}',[UserController::class,'getDiscount']);
+    Route::get('/count_discount/{id}',[UserController::class,'countDiscount']);
 });
 
 Route::group(["prefix"=> "business"], function(){
