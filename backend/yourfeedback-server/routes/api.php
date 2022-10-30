@@ -7,6 +7,7 @@ use App\Http\Controllers\BusinessController;
 
 Route::group(["prefix"=> "user"], function(){
     Route::get('/get_user/{id}',[UserController::class,'getUser']);
+    Route::get('/question_category/{id}',[UserController::class,'questionByCategory']);
 });
 
 Route::group(["prefix"=> "business"], function(){
