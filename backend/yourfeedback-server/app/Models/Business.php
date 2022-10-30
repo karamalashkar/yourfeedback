@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Feedback;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -29,7 +30,7 @@ class Business extends Model
     }
 
     public function userFeedback(){
-        return $this->belongsToMany(User::class,'feedbacks')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
+        return $this->belongsToMany(User::class,'feedback')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
     }
 
     public function feedback(){
