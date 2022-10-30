@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Business;
+use App\Models\Category;
 
 class BusinessController extends Controller
 {
@@ -66,6 +67,23 @@ class BusinessController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => $business
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function businessByCategory(Request $request){
+        $category_id=$request->id;
+        
+        $response=Category::where('id',$category_id)->with('business')->get();
+        
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
             ]);
         }
 
