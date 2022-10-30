@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Discount;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -21,5 +22,9 @@ class Business extends Model
 
     public function userDiscount(){
         return $this->belongsToMany(User::class,'discounts')->withPivot(['value'])->withTimestamps();
+    }
+
+    public function discount(){
+        return $this->belongsTo(Discount::class);
     }
 }
