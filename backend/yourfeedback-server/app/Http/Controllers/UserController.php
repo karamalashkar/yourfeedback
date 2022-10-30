@@ -92,4 +92,20 @@ class UserController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function countDiscount(Request $request){
+        $user_id=$request->id;
+        $response=Discount::where('user_id',$user_id)->count();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
