@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Discount;
 
 use Illuminate\Http\Request;
 
@@ -73,6 +74,22 @@ class UserController extends Controller
 
         return response()->json([
             'status' => 'success',
+        ]);
+    }
+
+    function getDiscount(Request $request){
+        $user_id=$request->id;
+        $response=Discount::where('user_id',$user_id)->with('business')->get();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
         ]);
     }
 }
