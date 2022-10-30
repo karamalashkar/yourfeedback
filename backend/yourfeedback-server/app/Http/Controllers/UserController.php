@@ -62,4 +62,17 @@ class UserController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function discount(Request $request){
+        $user_id=$request->user_id;
+        $business_id=$request->business_id;
+        $value=$request->value;
+
+        $user=User::find($user_id);
+        $response=$user->businessDiscount()->attach($business_id,['value'=>$value]);
+
+        return response()->json([
+            'status' => 'success',
+        ]);
+    }
 }
