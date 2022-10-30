@@ -9,6 +9,7 @@ Route::group(["prefix"=> "user"], function(){
     Route::get('/get_user/{id}',[UserController::class,'getUser']);
     Route::get('/question_category/{id}',[UserController::class,'questionByCategory']);
     Route::post('/discount',[UserController::class,'discount']);
+    Route::get('/get_discount/{id}',[UserController::class,'getDiscount']);
 });
 
 Route::group(["prefix"=> "business"], function(){
