@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string('answer');
             $table->timestamps();
         });
+
+        Schema::rename('feedbacks','feedback');
     }
 
     public function down()
     {
-        Schema::dropIfExists('feedbacks');
+        Schema::dropIfExists('feedback');
     }
 };
