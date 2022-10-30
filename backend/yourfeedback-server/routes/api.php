@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BusinessController;
 
 Route::group(["prefix"=> "business"], function(){
+    Route::get('/get_business/{id}',[BusinessController::class,'getBusiness']);
     Route::post('/edit_business',[BusinessController::class,'editBusiness']);        
 });
 
