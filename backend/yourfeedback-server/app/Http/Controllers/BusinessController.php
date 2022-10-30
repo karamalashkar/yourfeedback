@@ -112,5 +112,22 @@ class BusinessController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function searchBusiness(Request $request){
+        $word=$request->word;
+
+        $response = Business::where('name', 'like', "%{$word}%")->get();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
 
