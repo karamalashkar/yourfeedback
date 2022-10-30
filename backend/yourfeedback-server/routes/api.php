@@ -13,6 +13,7 @@ Route::group(["prefix"=> "user"], function(){
     Route::get('/count_discount/{id}',[UserController::class,'countDiscount']);
     Route::post('/feedback',[UserController::class,'feedback']);
     Route::get('/get_feedback/{id}',[UserController::class,'getFeedback']);
+    Route::get('/count_feedback/{id}',[UserController::class,'countFeedback']);
 });
 
 Route::group(["prefix"=> "business"], function(){
