@@ -141,4 +141,20 @@ class UserController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function countFeedback(Request $request){
+        $user_id=$request->id;
+        $response=Feedback::where('user_id',$user_id)->count();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
