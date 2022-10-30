@@ -30,5 +30,31 @@ class BusinessController extends Controller
             'status' => 'success'
         ]);
     }
+
+    function editBusiness(Request $request){
+        $user_id=$request->user_id;
+        $bio=$request->bio;
+
+        //base 64 to image
+        $base64Image = explode(";base64,", $request->image);
+        $explodeImage = explode("image/", $base64Image[0]);
+        $imageType = $explodeImage[1];
+        $image_base64 = base64_decode($base64Image[1]);
+        $imageName = $user_id.'.'.'png';
+        \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
+
+        $business=Business::where('id',$user_id)
+        ->update(['bio'=>$bio,'image'=>$imageName]);
+
+        if($business){
+            return response()->json([
+                'status' => 'success'
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
 
