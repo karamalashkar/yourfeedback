@@ -27,4 +27,8 @@ class Business extends Model
     public function discount(){
         return $this->belongsTo(Discount::class);
     }
+
+    public function userFeedback(){
+        return $this->belongsToMany(User::class,'feedbacks')->withPivot(['survey_id','question_id','answer'])->withTimestamps();
+    }
 }
