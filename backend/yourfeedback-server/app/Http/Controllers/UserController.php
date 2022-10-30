@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Category;
 
 use Illuminate\Http\Request;
 
@@ -37,6 +38,23 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'data' => $user
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function questionByCategory(Request $request){
+        $category_id=$request->id;
+
+        $response=Category::where('id',$category_id)->with('question')->get();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
             ]);
         }
 
