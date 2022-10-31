@@ -23,7 +23,8 @@ Route::group(["prefix"=> "business"], function(){
     Route::post('/near_business',[BusinessController::class,'nearBusiness']);
     Route::get('/search_business/{word}',[BusinessController::class,'searchBusiness']);
     Route::get('/count_discount/{id}',[BusinessController::class,'countDiscount']);
-    Route::get('/count_feedback/{id}',[BusinessController::class,'countFeedback']);        
+    Route::get('/count_feedback/{id}',[BusinessController::class,'countFeedback']);
+    Route::get('/get_feedback/{id}',[BusinessController::class,'getFeedback']);        
 });
 
 Route::post('/add_user',[UserController::class,'addUser']);
