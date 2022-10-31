@@ -169,8 +169,29 @@ class BusinessController extends Controller
         $response=Feedback::where('business_id',$business_id)
         ->with('user')
         ->with('question')
+        ->orderBy('created_at','DESC')
         ->get()
         ->groupBy('survey_id')
+        ->toArray();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function getDiscount(Request $request){
+        $business_id=$request->id;
+        $response=Discount::where('business_id',$business_id)
+        ->with('user')
+        ->orderBy('created_at','DESC')
+        ->get()
         ->toArray();
 
         if($response){
