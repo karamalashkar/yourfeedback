@@ -26,7 +26,8 @@ Route::group(["prefix"=> "business"], function(){
     Route::get('/count_feedback/{id}',[BusinessController::class,'countFeedback']);
     Route::get('/get_feedback/{id}',[BusinessController::class,'getFeedback']);        
     Route::get('/get_discount/{id}',[BusinessController::class,'getDiscount']);
-    Route::get('/discount_week/{id}',[BusinessController::class,'discountWeek']);        
+    Route::get('/discount_week/{id}',[BusinessController::class,'discountWeek']);
+    Route::get('/discount_month/{id}',[BusinessController::class,'discountMonth']);        
 });
 
 Route::post('/add_user',[UserController::class,'addUser']);
