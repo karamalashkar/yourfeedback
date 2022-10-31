@@ -16,4 +16,8 @@ class Feedback extends Model
     public function business(){
         return $this->belongsTo(Business::class,'business_id');
     }
+
+    public function question(){
+        return $this->belongsTo(Question::class,'question_id');
+    }
 }
