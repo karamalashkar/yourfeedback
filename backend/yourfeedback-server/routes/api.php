@@ -30,7 +30,8 @@ Route::group(["prefix"=> "business"], function(){
     Route::get('/discount_month/{id}',[BusinessController::class,'discountMonth']);
     Route::get('/discount_year/{id}',[BusinessController::class,'discountYear']);
     Route::get('/feedback_week/{id}',[BusinessController::class,'feedbackWeek']); 
-    Route::get('/feedback_month/{id}',[BusinessController::class,'feedbackMonth']);        
+    Route::get('/feedback_month/{id}',[BusinessController::class,'feedbackMonth']);
+    Route::get('/feedback_year/{id}',[BusinessController::class,'feedbackYear']);        
 });
 
 Route::post('/add_user',[UserController::class,'addUser']);
