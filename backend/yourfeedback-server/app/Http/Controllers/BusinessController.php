@@ -226,5 +226,24 @@ class BusinessController extends Controller
                 'status' => 'failed'
             ]);    
     }
+
+    function discountMonth(Request $request){
+        $business_id=$request->id;
+        
+        $response = Discount::where('business_id','=',$business_id)    
+            ->where('created_at','>',now()->subMonth()) 
+            ->count();
+        
+            if($response){
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $response
+                ]);
+            }
+    
+            return response()->json([
+                'status' => 'failed'
+            ]);    
+    }
 }
 
