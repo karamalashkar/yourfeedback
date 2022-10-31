@@ -38,6 +38,7 @@ class BusinessController extends Controller
 
     function editBusiness(Request $request){
         $business_id=$request->business_id;
+        $name=$request->name;
         $bio=$request->bio;
 
         //base 64 to image
@@ -49,7 +50,7 @@ class BusinessController extends Controller
         \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
 
         $business=Business::where('id',$business_id)
-        ->update(['bio'=>$bio,'image'=>$imageName]);
+        ->update(['name'=>$name,'bio'=>$bio,'image'=>$imageName]);
 
         if($business){
             return response()->json([
