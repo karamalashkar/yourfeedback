@@ -21,7 +21,8 @@ Route::group(["prefix"=> "business"], function(){
     Route::post('/edit_business',[BusinessController::class,'editBusiness']);
     Route::get('/business_category/{id}',[BusinessController::class,'businessByCategory']);
     Route::post('/near_business',[BusinessController::class,'nearBusiness']);
-    Route::get('/search_business/{word}',[BusinessController::class,'searchBusiness']);        
+    Route::get('/search_business/{word}',[BusinessController::class,'searchBusiness']);
+    Route::get('/count_discount/{id}',[BusinessController::class,'countDiscount']);        
 });
 
 Route::post('/add_user',[UserController::class,'addUser']);
