@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Business;
 use App\Models\Category;
+use App\Models\Discount;
 
 class BusinessController extends Controller
 {
@@ -117,6 +118,22 @@ class BusinessController extends Controller
         $word=$request->word;
 
         $response = Business::where('name', 'like', "%{$word}%")->get();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function countDiscount(Request $request){
+        $business_id=$request->id;
+        $response=Discount::where('business_id',$business_id)->count();
 
         if($response){
             return response()->json([
