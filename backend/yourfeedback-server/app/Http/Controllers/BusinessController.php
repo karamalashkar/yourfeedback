@@ -8,6 +8,8 @@ use App\Models\Category;
 use App\Models\Discount;
 use App\Models\Feedback;
 
+use Carbon\Carbon;
+
 class BusinessController extends Controller
 {
     function addBusiness(Request $request){
@@ -204,6 +206,25 @@ class BusinessController extends Controller
         return response()->json([
             'status' => 'failed'
         ]);
+    }
+
+    function discountWeek(Request $request){
+        $business_id=$request->id;
+        
+        $response = Discount::where('business_id','=',$business_id)    
+            ->where('created_at','>',now()->subWeek()) 
+            ->count();
+        
+            if($response){
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $response
+                ]);
+            }
+    
+            return response()->json([
+                'status' => 'failed'
+            ]);    
     }
 }
 
