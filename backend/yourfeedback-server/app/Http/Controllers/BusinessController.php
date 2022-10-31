@@ -163,5 +163,26 @@ class BusinessController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function getFeedback(Request $request){
+        $business_id=$request->id;
+        $response=Feedback::where('business_id',$business_id)
+        ->with('user')
+        ->with('question')
+        ->get()
+        ->groupBy('survey_id')
+        ->toArray();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
 
