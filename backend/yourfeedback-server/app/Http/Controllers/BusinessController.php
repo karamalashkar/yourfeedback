@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Business;
 use App\Models\Category;
 use App\Models\Discount;
+use App\Models\Feedback;
 
 class BusinessController extends Controller
 {
@@ -134,6 +135,22 @@ class BusinessController extends Controller
     function countDiscount(Request $request){
         $business_id=$request->id;
         $response=Discount::where('business_id',$business_id)->count();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
+
+    function countFeedback(Request $request){
+        $business_id=$request->id;
+        $response=Feedback::where('business_id',$business_id)->count();
 
         if($response){
             return response()->json([
