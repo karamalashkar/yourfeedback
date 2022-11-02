@@ -4,7 +4,7 @@ const Chart = (props)=>{
     return(
         <BarChart
             width={520}
-            height={300}
+            height={310}
             data={props.data}
             margin={{
                 top: 20,
