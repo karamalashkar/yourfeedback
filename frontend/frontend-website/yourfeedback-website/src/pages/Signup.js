@@ -55,10 +55,10 @@ const Signup = ()=>{
         <>
             <Navbar />
             <div className='flex flex-col align-center xl:flex-row'>
-                <div className='xl:w-5/12 flex-col items-center'>
-                    <h1 className='mb-8 text-5xl font-bold'>Sign Up</h1>
+                <div className='xl:w-5/12 flex flex-col items-center'>
+                    <h1 className='mb-4 text-5xl font-bold'>Sign Up</h1>
                     <h2 className="my-4 text-lg text-red-700 font-bold">{error}</h2>
-                    <form onSubmit={signup}>
+                    <form onSubmit={signup} className="w-full flex flex-col items-center">
                         <Input type='text' text='Name' setValue={setName} setError={setError} />
                         <Input type='email' text='Email' setValue={setEmail} setError={setError} />
                         <h4 className="text-red-700 font-bold">{errorEmail}</h4>
