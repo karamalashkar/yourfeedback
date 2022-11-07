@@ -4,10 +4,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Feather from 'react-native-vector-icons/Feather';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { colors } from "../constants/colors";
 import { HomeStackNavigation } from "./HomeStackNavigation";
 import FeedbackScreen from "../screens/feedback/FeedbackScreen";
 import DiscountScreen from "../screens/discount/DiscountScreen";
+import ProfileScreen from "../screens/profile/Profile";
 
 export function BottomTabNavigation (){
     const BottomTabsNav = createBottomTabNavigator();
@@ -87,6 +89,28 @@ export function BottomTabNavigation (){
               tabBarIcon: ({ focused, color, size }) => (
                 <Feather
                   name={"credit-card"}
+                  size={28}
+                  color={color}
+                />
+              ),
+              headerStyle:{
+                backgroundColor: colors.red,
+              },
+              headerTitleStyle:{
+                color: colors.white,
+                fontWeight: 'bold',
+                fontSize: 25
+              }
+            }}
+          />
+          <BottomTabsNav.Screen
+            name="ProfileScreen"
+            component={ProfileScreen}
+            options={{
+              title: 'Profile',
+              tabBarIcon: ({ focused, color, size }) => (
+                <FontAwesome5
+                  name={"user-alt"}
                   size={28}
                   color={color}
                 />
