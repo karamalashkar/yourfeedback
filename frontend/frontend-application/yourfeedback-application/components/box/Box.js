@@ -24,4 +24,15 @@ const DiscountBox = (props) =>{
     )
 }
 
-export { FeedbackBox,DiscountBox };
+const ProfileBox = (props) =>{
+    return(
+        <View style={styles.component}>
+            <View style={styles.box}>
+                <Text style={styles.text}>{props.name}</Text>
+                <Text style={styles.text}>{props.value}</Text>
+            </View>
+        </View>
+    )
+}
+
+export { FeedbackBox,DiscountBox,ProfileBox };
