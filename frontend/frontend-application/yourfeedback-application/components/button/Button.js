@@ -3,7 +3,7 @@ import { styles } from "./style";
 
 const Button = (props) =>{
     return(
-        <Pressable style={styles.button}>
+        <Pressable style={styles.button} onPress={props.onPress}>
             <Text style={styles.text}>{props.text}</Text>
         </Pressable>
     )
