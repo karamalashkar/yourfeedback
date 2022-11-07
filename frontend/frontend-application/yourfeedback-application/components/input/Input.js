@@ -9,7 +9,8 @@ const Input = (props) =>{
             placeholder={props.placeholder}
             selectionColor={colors.red}
             secureTextEntry={props.state} 
-            onChangeText={ text => props.setValue(text)}/>
+            onChangeText={ text => props.setValue(text)}
+            onFocus={()=>props.setError('')}/>
             <Text style={styles.error}>{props.errorMessage}</Text>
         </>
     )
