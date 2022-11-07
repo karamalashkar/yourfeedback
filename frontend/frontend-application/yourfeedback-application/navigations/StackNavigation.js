@@ -16,6 +16,9 @@ export function StackNavigation() {
         <RootStackNav.Screen
           name="Login"
           component={LoginScreen}
+          options={{
+            headerLeft: () => {}
+          }}
         />
 
         <RootStackNav.Screen
