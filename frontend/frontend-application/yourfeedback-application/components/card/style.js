@@ -3,6 +3,10 @@ import { colors } from "../../constants/colors";
 
 export const styles=StyleSheet.create({
     card:{
+        width: '100%',
+        alignItems: 'center'
+    },
+    content:{
         width: '90%',
         height: 180,
         marginTop: 20,
