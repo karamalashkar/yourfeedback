@@ -1,9 +1,11 @@
 import { Image, ScrollView, View } from "react-native";
-import { styles } from "./Style";
+import { styles } from "./style";
+import { useNavigation } from '@react-navigation/native';
 import Search from "../../components/search/Search";
 import Card from "../../components/card/Card";
 
 const HomeScreen = () =>{
+    const navigation=useNavigation();
     const data=true;
     if (!data)
         return (
@@ -17,7 +19,7 @@ const HomeScreen = () =>{
         <View style={styles.home}>
             <Search />
             <ScrollView style={styles.scroll}>
-                <Card name='Market' />
+                <Card name='Market' onPress={()=>navigation.push('Business')} />
             </ScrollView>
         </View>
     )
