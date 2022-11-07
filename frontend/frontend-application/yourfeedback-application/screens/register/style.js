@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "../../constants/colors";
 
 export const styles=StyleSheet.create({
     component:{
@@ -15,5 +16,8 @@ export const styles=StyleSheet.create({
         fontWeight: 'bold',
         margin: 20,
         textAlign: 'center',
+    },
+    error:{
+        color: colors.red
     }
 })
