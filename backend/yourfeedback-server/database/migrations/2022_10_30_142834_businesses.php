@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('image')->default('');
             $table->integer('latitude');
             $table->integer('longitude');
+            $table->integer('feedback_code');
             $table->timestamps();
         });
     }
