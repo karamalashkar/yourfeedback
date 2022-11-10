@@ -43,4 +43,5 @@ Route::group(["prefix"=> "business"], function(){
 Route::post('/user',[UserController::class,'addUser']);
 Route::post('/business',[BusinessController::class,'addBusiness']);
 Route::post('/login',[AuthController::class,'login']);
+Route::post('/business_login',[AuthController::class,'businessLogin']);
 
