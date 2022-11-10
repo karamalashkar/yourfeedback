@@ -14,6 +14,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('business_id');
             $table->string('value');
+            $table->boolean('used');
             $table->timestamps();
         });
     }
