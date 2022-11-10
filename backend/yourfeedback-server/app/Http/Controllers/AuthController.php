@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Config;
 use App\Models\User;
+use App\Models\Business;
 
 class AuthController extends Controller
 {
@@ -32,6 +33,35 @@ class AuthController extends Controller
 		return response()->json([
 		    'status' => 'success',
             'user' => Auth::user(),
+		    'result' => [
+		        'token' => $token,
+		    ],
+		]);
+    }
+
+    public function businessLogin(Request $request){
+        Config()->set('auth.defaults.guard','business');
+        Config::set('jwt.user', 'App\Business'); 
+		Config::set('auth.providers.users.model', \App\Business::class);
+		$credentials = $request->only('email', 'password');
+		$token = null;
+		try {
+		    if (!$token = Auth::attempt($credentials)) {
+		        return response()->json([
+		            'response' => 'error',
+		            'message' => 'invalid_email_or_password',
+		        ]);
+		    }
+		} catch (JWTAuthException $e) {
+		    return response()->json([
+		        'response' => 'error',
+		        'message' => 'failed_to_create_token',
+		    ]);
+		}
+        $business=Business::where('email', $request->email)->first()->id;
+		return response()->json([
+		    'response' => 'success',
+            'business' => $business,
 		    'result' => [
 		        'token' => $token,
 		    ],
