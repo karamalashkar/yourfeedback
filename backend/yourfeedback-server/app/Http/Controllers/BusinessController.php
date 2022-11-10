@@ -10,8 +10,8 @@ use App\Models\Feedback;
 
 use Carbon\Carbon;
 
-class BusinessController extends Controller
-{
+class BusinessController extends Controller{
+    // adding new business
     function addBusiness(Request $request){
         $business=new Business;
 
@@ -21,6 +21,7 @@ class BusinessController extends Controller
         $business->category_id=$request->category_id;
         $business->latitude=$request->latitude;
         $business->longitude=$request->longitude;
+        $business->feedback_code=$request->feedback_code;
 
         $check_email=$business::where('email','=',$request->email)->first();
         
@@ -36,6 +37,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //edit business
     function editBusiness(Request $request){
         $business_id=$request->business_id;
         $name=$request->name;
@@ -63,6 +65,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get all discounts by user id
     function getBusiness(Request $request){
         $business_id=$request->id;
 
@@ -80,6 +83,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get all businesses by category id
     function businessByCategory(Request $request){
         $category_id=$request->id;
         
@@ -97,6 +101,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get the nearest businesses according to user location
     function nearBusiness(Request $request){
         $latitude=$request->latitude;
         $longitude=$request->longitude;
@@ -118,6 +123,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get businesses by business name
     function searchBusiness(Request $request){
         $word=$request->word;
 
@@ -135,6 +141,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get the total number of discount by user id
     function countDiscount(Request $request){
         $business_id=$request->id;
         $response=Discount::where('business_id',$business_id)->count();
@@ -151,6 +158,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get the total number of feedback by user id
     function countFeedback(Request $request){
         $business_id=$request->id;
         $response=Feedback::where('business_id',$business_id)->count();
@@ -167,6 +175,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get all feedback by user id
     function getFeedback(Request $request){
         $business_id=$request->id;
         $response=Feedback::where('business_id',$business_id)
@@ -189,6 +198,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get all discounts by user id
     function getDiscount(Request $request){
         $business_id=$request->id;
         $response=Discount::where('business_id',$business_id)
@@ -209,6 +219,7 @@ class BusinessController extends Controller
         ]);
     }
 
+    //get the total number of discount in week by user id
     function discountWeek(Request $request){
         $business_id=$request->id;
         
@@ -216,18 +227,19 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subWeek()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 
+    //get the total number of discount in month by user id
     function discountMonth(Request $request){
         $business_id=$request->id;
         
@@ -235,18 +247,19 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subMonth()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 
+    //get the total number of discount in year by user id
     function discountYear(Request $request){
         $business_id=$request->id;
         
@@ -254,18 +267,19 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subYear()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 
+    //get the total number of feedback in week by user id
     function feedbackWeek(Request $request){
         $business_id=$request->id;
         
@@ -273,18 +287,19 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subWeek()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 
+    //get the total number of feedback in month by user id
     function feedbackMonth(Request $request){
         $business_id=$request->id;
         
@@ -292,18 +307,19 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subMonth()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 
+    //get the total number of feedback in year by user id
     function feedbackYear(Request $request){
         $business_id=$request->id;
         
@@ -311,16 +327,16 @@ class BusinessController extends Controller
             ->where('created_at','>',now()->subYear()) 
             ->count();
         
-            if($response){
-                return response()->json([
-                    'status' => 'success',
-                    'data' => $response
-                ]);
-            }
-    
+        if($response){
             return response()->json([
-                'status' => 'failed'
-            ]);    
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+    
+        return response()->json([
+            'status' => 'failed'
+        ]);    
     }
 }
 
