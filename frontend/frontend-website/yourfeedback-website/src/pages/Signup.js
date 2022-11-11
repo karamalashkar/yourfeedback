@@ -4,8 +4,11 @@ import Input from "../components/Input";
 import Select from "../components/Select";
 import Button from "../components/Button";
 import { emailValidation , passwordValidation } from "../utilities/Validator";
+import { signup } from "../api/signup";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ()=>{
+    const navigate=useNavigate();
     const[name,setName]=useState('')
     const[email,setEmail]=useState('')
     const[password,setPassword]=useState('')
@@ -15,13 +18,14 @@ const Signup = ()=>{
     const[error,setError]=useState('')
     const[errorEmail,setErrorEmail]=useState('')
     const[errorPassword,setErrorPassword]=useState('')
+    const feedback_code=Math.floor(Math.random() * (100000000-1000));
 
     navigator.geolocation.getCurrentPosition(function(position) {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
     })
 
-    const signup = (e)=>{
+    const signupBusiness = async (e)=>{
         e.preventDefault();
         if(!name || !email || !password || !category){
             setError('Please enter all required fields')
@@ -34,6 +38,14 @@ const Signup = ()=>{
         if(matchEmail && matchPassword){
             setErrorEmail('')
             setErrorPassword('')
+            const post={name,email,password,'category_id':category,latitude,longitude,feedback_code};
+            const result=await signup(post);
+            if(result == 'success'){
+                navigate("/")
+            }
+            else{
+                setError('Email already exist')
+            }
         }
         else{
             if(!matchEmail && !matchPassword){
@@ -58,7 +70,7 @@ const Signup = ()=>{
                 <div className='xl:w-5/12 flex flex-col items-center'>
                     <h1 className='mb-4 text-5xl font-bold'>Sign Up</h1>
                     <h2 className="my-4 text-lg text-red-700 font-bold">{error}</h2>
-                    <form onSubmit={signup} className="w-full flex flex-col items-center">
+                    <form onSubmit={signupBusiness} className="w-full flex flex-col items-center">
                         <Input type='text' text='Name' setValue={setName} setError={setError} />
                         <Input type='email' text='Email' setValue={setEmail} setError={setError} />
                         <h4 className="text-red-700 font-bold">{errorEmail}</h4>
