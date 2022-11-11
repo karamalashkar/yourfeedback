@@ -7,7 +7,11 @@ const Card = (props) =>{
             <div className="flex-col items-start mx-8">
                 <h1 className="text-2xl font-bold pt-4">{props.name}</h1>
                 <h1 className="text-xl font-bold">{props.date}</h1>
-                <Answer />
+                {Object.values(props.data).map((data)=>{
+                    return(
+                        <Answer question={data.question.question} response={data.answer} />
+                    )
+                })}
             </div>
         </div>
         </>
