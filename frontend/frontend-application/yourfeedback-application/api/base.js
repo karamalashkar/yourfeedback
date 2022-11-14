@@ -10,3 +10,14 @@ const getToken = async()=>{
 }
 
 const token=getToken();
+
+//define headers 
+axios.defaults.headers = {
+    'Authorization': `Bearer ${token}`,
+    "Access-Control-Allow-Origin": "*",
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE',
+    'Access-Control-Allow-Credentials': true,
+    'Content-Type': "multipart/form-data",
+    'Accept': "application/json",
+}
