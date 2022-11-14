@@ -3,9 +3,12 @@ import { styles } from "./style";
 import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import { useState } from "react";
-import { emailValidation, passwordValidation } from "../../utilities/Validator"; 
+import { emailValidation, passwordValidation } from "../../utilities/Validator";
+import { register } from "../../api/register"; 
+import { useNavigation } from '@react-navigation/native';
 
 const RegisterScreen = () =>{
+    const navigation=useNavigation();
     const [name,setName]=useState('')
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
@@ -13,7 +16,7 @@ const RegisterScreen = () =>{
     const [errorEmail,setErrorEmail]=useState('')
     const [errorPassword,setErrorPassword]=useState('')
 
-    const register = () =>{
+    const registerUser = async() =>{
         if(!name || !email || !password){
             setErrorMessage('Enter all required fields')
             return null
@@ -26,6 +29,13 @@ const RegisterScreen = () =>{
         if(matchEmail && matchPassword){
             setErrorEmail('')
             setErrorPassword('')
+            const post={name,email,password};
+            const response=await register(post);
+            if(response=='Email already exist'){
+                setErrorMessage('Email already exist')
+                return null
+            }
+            navigation.push('Login')
         }
         else{
             if(!matchEmail && !matchPassword){
@@ -48,7 +58,9 @@ const RegisterScreen = () =>{
             <Image source={require('../.././assets/logo.png')} style={styles.image}/>
             <Text style={styles.text}>Sign Up</Text>
             <Text style={styles.error}>{errorMessage}</Text>
-            <Input placeholder='Name' state={false} setValue={setName} setError={setErrorMessage}/>
+            <Input placeholder='Name' state={false} 
+            setValue={setName} 
+            setError={setErrorMessage}/>
             
             <Input placeholder='Email' 
             state={false} errorMessage={errorEmail} 
@@ -60,7 +72,7 @@ const RegisterScreen = () =>{
             errorMessage={errorPassword} 
             setError={setErrorMessage}/>
             
-            <Button text='Signup' onPress={register} />
+            <Button text='Signup' onPress={registerUser} />
         </View>        
     )
 }
