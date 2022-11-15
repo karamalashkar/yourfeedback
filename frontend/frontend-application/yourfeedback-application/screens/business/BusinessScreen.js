@@ -30,7 +30,11 @@ const BusinessScreen = ({route}) =>{
                     setError('You can make one feedback by month')
                 }
                 else{
-                    setError('You can make feedback')
+                    navigation.push('Form',{
+                        id: business_id,
+                        name: route.params.name,
+                        category_id: route.params.category_id
+                    })
                 }
             }
         }
