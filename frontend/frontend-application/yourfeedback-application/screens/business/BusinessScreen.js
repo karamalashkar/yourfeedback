@@ -16,8 +16,9 @@ const BusinessScreen = ({route}) =>{
             setError('Enter a code')
         }
         else{
-            setError('')
-            navigation.push('Form')
+            if(code!=route.params.feedback_code){
+                setError('Wrong Code')
+            }
         }
     }
 
