@@ -1,13 +1,16 @@
-import { Image, ScrollView, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { styles } from "./style";
 import { useNavigation } from '@react-navigation/native';
 import { useState,useEffect } from "react";
 import Search from "../../components/search/Search";
 import Card from "../../components/card/Card";
 import * as Location from 'expo-location';
+import { getBusiness } from "../../api/getBusiness";
 
 const HomeScreen = () =>{
     const navigation=useNavigation();
+    const [data,setData]=useState('')
+    const [business,setBusiness]=useState('')
     const [errorMessage, setErrorMessage] = useState('');
 
     useEffect(() => {
@@ -19,15 +22,23 @@ const HomeScreen = () =>{
                 return;
             }
 
+            setErrorMessage('');
             let location = await Location.getCurrentPositionAsync({});
             const latitude=location.coords.latitude;
-            const longitude=location.coords.longitude;        
+            const longitude=location.coords.longitude;
+            const response=await getBusiness(latitude,longitude);
+            if(response.data.length==0){
+                setData(false)
+                return null
+            }
+
+            setData(true)
+            setBusiness(response.data)        
         })
 
         ();
     }, []);
 
-    const data=true;
     if (!data)
         return (
             <>
@@ -39,8 +50,19 @@ const HomeScreen = () =>{
     return(
         <View style={styles.home}>
             <Search />
+            <Text>{errorMessage}</Text>
             <ScrollView style={styles.scroll}>
-                <Card name='Market' onPress={()=>navigation.push('Business')} />
+            {Object.values(business).map((business,index)=>{
+                return(
+                    <Card key={index} image={business.image} 
+                    name={business.name} onPress={()=>navigation.push('Business',{
+                        image: business.image,
+                        name: business.name,
+                        bio: business.bio
+                    })} />    
+                )
+            })}
+                
             </ScrollView>
         </View>
     )
