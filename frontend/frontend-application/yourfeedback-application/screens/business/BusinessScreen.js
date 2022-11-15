@@ -5,7 +5,7 @@ import Button from "../../components/button/Button";
 import { useState } from "react";
 import Popup from "../../components/popup/Popup";
 
-const BusinessScreen = (props) =>{
+const BusinessScreen = ({route}) =>{
     const navigation=useNavigation();
     const [code,setCode]=useState('')
     const [error,setError]=useState('')
@@ -29,10 +29,10 @@ const BusinessScreen = (props) =>{
 
     return(
         <View>
-            <Image source={require('../../assets/market.jpg')} style={styles.image} />
+            <Image source={route.params.image} style={styles.image} />
             <View style={styles.content}>
-                <Text style={styles.name}>{props.name}</Text>
-                <Text style={styles.body}>{props.body}</Text>
+                <Text style={styles.name}>{route.params.name}</Text>
+                <Text style={styles.body}>{route.params.bio}</Text>
                 <Button text='Feedback' onPress={()=>setIsOpen(true)} />
             </View>
             <Popup open={isOpen} continue={checkCode} back={goBack} error={error} setValue={setCode} />
