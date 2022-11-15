@@ -361,11 +361,13 @@ class BusinessController extends Controller{
         if($response){
             return response()->json([
                 'status' => 'success',
+                'data' => $response
             ]);
         }
     
         return response()->json([
             'status' => 'failed',
+            'data' => $response
         ]);
     }
 
