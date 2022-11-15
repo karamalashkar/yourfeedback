@@ -2,22 +2,36 @@ import { Image, Text, View, Alert } from "react-native";
 import { styles } from "./style";
 import { useNavigation } from '@react-navigation/native';
 import Button from "../../components/button/Button";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from "react";
 import Popup from "../../components/popup/Popup";
+import { canMakeFeedback } from "../../api/canMakeFeedback";
 
 const BusinessScreen = ({route}) =>{
     const navigation=useNavigation();
+    const business_id=route.params.id;
     const [code,setCode]=useState('')
     const [error,setError]=useState('')
     const [isOpen,setIsOpen]=useState(false)
 
-    const checkCode = () =>{
+    const checkCode = async() =>{
         if(!code){
             setError('Enter a code')
         }
         else{
             if(code!=route.params.feedback_code){
                 setError('Wrong Code')
+                return null
+            }
+            const userId=await AsyncStorage.getItem('id');
+            const response=await canMakeFeedback(userId,business_id);
+            if(response.status=='success'){
+                if(response.data.length!=0){
+                    setError('You can make one feedback by month')
+                }
+                else{
+                    setError('You can make feedback')
+                }
             }
         }
     }
