@@ -56,9 +56,12 @@ const HomeScreen = () =>{
                 return(
                     <Card key={index} image={business.image} 
                     name={business.name} onPress={()=>navigation.push('Business',{
+                        id: business.id,
                         image: business.image,
                         name: business.name,
-                        bio: business.bio
+                        bio: business.bio,
+                        category_id: business.category_id,
+                        feedback_code: business.feedback_code
                     })} />    
                 )
             })}
