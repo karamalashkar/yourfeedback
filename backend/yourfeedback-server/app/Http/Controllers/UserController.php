@@ -128,7 +128,7 @@ class UserController extends Controller
 
     function getFeedback(Request $request){
         $user_id=$request->id;
-        $response=Feedback::where('user_id',$user_id)->with('business')->get();
+        $response=Feedback::where('user_id',$user_id)->with('business')->get()->groupBy('survey_id');
 
         if($response){
             return response()->json([
@@ -144,7 +144,7 @@ class UserController extends Controller
 
     function countFeedback(Request $request){
         $user_id=$request->id;
-        $response=Feedback::where('user_id',$user_id)->count();
+        $response=Feedback::where('user_id',$user_id)->distinct('survey_id')->count();
 
         if($response){
             return response()->json([
