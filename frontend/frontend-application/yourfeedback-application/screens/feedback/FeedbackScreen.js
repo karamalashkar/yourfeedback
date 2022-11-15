@@ -10,8 +10,8 @@ const FeedbackScreen = () =>{
     const [feedback,setFeedback]=useState('')
     useEffect(()=>{
         const feedback=async () =>{
-            const business_id=await AsyncStorage.getItem('id');
-            const response=await getFeedback(business_id);
+            const userId=await AsyncStorage.getItem('id');
+            const response=await getFeedback(userId);
             if(response.status=='failde'){
                 setData(false)
                 return null
