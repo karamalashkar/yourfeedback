@@ -14,22 +14,22 @@ const ProfileScreen = () =>{
     const [discount,setDiscount]=useState('')
     useEffect(()=>{
         const user = async () =>{
-            const business_id=await AsyncStorage.getItem('id');
-            const response=await getUser(business_id);
+            const userId=await AsyncStorage.getItem('id');
+            const response=await getUser(userId);
             if(response.status=='success'){
                 setName(response.data.name)
             }
         }
         const getCountFeedback=async () =>{
-            const business_id=await AsyncStorage.getItem('id');
-            const response=await countFeedback(business_id);
+            const userId=await AsyncStorage.getItem('id');
+            const response=await countFeedback(userId);
             if(response.status=='success'){
                 setFeedback(response.data)
             }
         }
         const getCountDiscount=async () =>{
-            const business_id=await AsyncStorage.getItem('id');
-            const response=await countDiscount(business_id);
+            const userId=await AsyncStorage.getItem('id');
+            const response=await countDiscount(userId);
             if(response.status=='success'){
                 setDiscount(response.data)
             }
