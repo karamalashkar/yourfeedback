@@ -31,7 +31,7 @@ const BusinessScreen = ({route}) =>{
                 }
                 else{
                     navigation.push('Form',{
-                        id: business_id,
+                        id: businessId,
                         name: route.params.name,
                         category_id: route.params.category_id
                     })
