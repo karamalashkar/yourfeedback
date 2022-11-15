@@ -5,7 +5,7 @@ const Card = (props) =>{
     return(
         <Pressable style={styles.card} onPress={props.onPress}>
             <View style={styles.content}>
-                <Image source={require('../../assets/market.jpg')} style={styles.image} />
+                <Image source={props.image} style={styles.image} />
                 <Text style={styles.text} >{props.name}</Text>
             </View>    
         </Pressable>
