@@ -9,7 +9,7 @@ import { canMakeFeedback } from "../../api/canMakeFeedback";
 
 const BusinessScreen = ({route}) =>{
     const navigation=useNavigation();
-    const business_id=route.params.id;
+    const businessId=route.params.id;
     const [code,setCode]=useState('')
     const [error,setError]=useState('')
     const [isOpen,setIsOpen]=useState(false)
@@ -24,7 +24,7 @@ const BusinessScreen = ({route}) =>{
                 return null
             }
             const userId=await AsyncStorage.getItem('id');
-            const response=await canMakeFeedback(userId,business_id);
+            const response=await canMakeFeedback(userId,businessId);
             if(response.status=='success'){
                 if(response.data.length!=0){
                     setError('You can make one feedback by month')
