@@ -10,8 +10,8 @@ const DiscountScreen = () =>{
     const [discount,setDiscount]=useState('')
     useEffect(()=>{
         const discount=async () =>{
-            const business_id=await AsyncStorage.getItem('id');
-            const response=await getDiscount(business_id);
+            const userId=await AsyncStorage.getItem('id');
+            const response=await getDiscount(userId);
             if(response.status=='failde'){
                 setData(false)
                 return null
@@ -29,9 +29,9 @@ const DiscountScreen = () =>{
         )
     return(
         <ScrollView>
-            {Object.values(discount).map((discount)=>{
+            {Object.values(discount).map((discount,index)=>{
                 return(
-                    <DiscountBox name={discount.business.name} value={`${discount.value}%`} code={discount.code} />
+                    <DiscountBox key={index} name={discount.business.name} value={`${discount.value}%`} code={discount.code} />
                 )
             })}
         </ScrollView>
