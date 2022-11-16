@@ -42,17 +42,24 @@ class BusinessController extends Controller{
         $business_id=$request->business_id;
         $name=$request->name;
         $bio=$request->bio;
+        $image=$request->image;
 
-        //base 64 to image
-        $base64Image = explode(";base64,", $request->image);
-        $explodeImage = explode("image/", $base64Image[0]);
-        $imageType = $explodeImage[1];
-        $image_base64 = base64_decode($base64Image[1]);
-        $imageName = $business_id.'.'.'png';
-        \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
+        $update=['name'=>$name,'bio'=>$bio];
 
-        $business=Business::where('id',$business_id)
-        ->update(['name'=>$name,'bio'=>$bio,'image'=>$imageName]);
+        if($image){
+            //base 64 to image
+            $base64Image = explode(";base64,", $image);
+            $explodeImage = explode("image/", $base64Image[0]);
+            $imageType = $explodeImage[1];
+            $image_base64 = base64_decode($base64Image[1]);
+            $imageName = $business_id.'.'.'png';
+            \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
+            $imageBusiness='http://192.168.1.5:8000/assets/'.$imageName;
+            $update['image']=$imageBusiness;
+        }    
+        
+       $business=Business::where('id',$business_id)
+        ->update($update);
 
         if($business){
             return response()->json([
