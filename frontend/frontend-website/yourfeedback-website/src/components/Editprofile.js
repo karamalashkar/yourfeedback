@@ -6,8 +6,29 @@ const Editprofile = ({open,onClose}) =>{
     const[name,setName]=useState('')
     const[bio,setBio]=useState('')
     const[image,setImage]=useState('')
-
+    
     const edit = ()=>{}
+
+    const uploadImage = async(e)=>{
+        const file=e.target.files[0]
+        const base64=await convertBase64(file);
+        setImage(base64)
+    }
+
+    //convert image to base64
+    const convertBase64= (file)=>{
+        return new Promise((resolve,reject)=>{
+            const filReader=new FileReader();
+            filReader.readAsDataURL(file);
+
+            filReader.onload=()=>{
+                resolve(filReader.result);
+            }
+            filReader.onerror=(error)=>{
+                reject(error);
+            }
+        })
+    }
 
      if(!open){
         return null
@@ -23,17 +44,16 @@ const Editprofile = ({open,onClose}) =>{
                     
                     <input type="text" placeholder="Name" 
                     onChange={(event)=>{setName(event.target.value)}}
-                    value={name}
+                    defaultValue={name}
                     className="w-1/2 p-3 mt-4 border-2 border-grey-100 rounded-xl"/>
                     
                     <textarea placeholder="Bio" maxLength={200}
                     onChange={(event)=>{setBio(event.target.value)}}
-                    value={bio}
+                    defaultValue={bio}
                     className="w-1/2 p-3 mt-4 mb-4 h-44 border-2 border-grey-100 rounded-xl"></textarea>
                     
                     <input type="file" accept="image/png, image/jpg" 
-                    onChange={(event)=>{setImage(event.target.value)}}
-                    value={image}
+                    onChange={(e)=>{uploadImage(e)}}
                     className="w-1/2 p-3 border-2 border-grey-100 rounded-xl" />
 
                     <Button text={'Save'} />
