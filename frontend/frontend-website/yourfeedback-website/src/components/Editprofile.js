@@ -1,13 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Button from "./Button";
+import { getBusiness } from "../api/getBusiness";
+import { editBusiness } from "../api/editProfile";
 
 const Editprofile = ({open,onClose}) =>{
+    const business_id=localStorage.getItem('id');
     const[name,setName]=useState('')
     const[bio,setBio]=useState('')
     const[image,setImage]=useState('')
     
-    const edit = ()=>{}
+    const edit = async (e)=>{
+        e.preventDefault();
+        const post={business_id,name,bio,image}
+        if(!image){
+            post.image=''
+        }
+        const result=await editBusiness(post)
+        window.location.reload() 
+    }
+
+    useEffect(()=>{
+        const business= async ()=>{
+            const result=await getBusiness(business_id);
+            setName(result.name)
+            setBio(result.bio)
+        }
+
+        business();
+    },[])
 
     const uploadImage = async(e)=>{
         const file=e.target.files[0]
