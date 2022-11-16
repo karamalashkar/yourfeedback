@@ -6,7 +6,7 @@ import { getBusiness } from "../api/getBusiness";
 
 const Profile = ()=>{
     const business_id=localStorage.getItem('id');
-    const [image,setImage]=useState('')
+    const [image,setImage]=useState('market.jpg')
     const [name,setName]=useState('')
     const [bio,setBio]=useState('')
     const [feedbackCode,setFeedbackCode]=useState('')
@@ -14,10 +14,12 @@ const Profile = ()=>{
     useEffect(()=>{
         const business= async ()=>{
             const result=await getBusiness(business_id);
-            setImage(result.image)
             setName(result.name)
             setBio(result.bio)
             setFeedbackCode(result.feedback_code)
+            if(result.image){
+                setImage(result.image)
+            }
         }
 
         business();
