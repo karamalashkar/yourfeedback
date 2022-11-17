@@ -12,12 +12,12 @@ export const styles=StyleSheet.create({
         borderRadius: 10,
     },
     text:{
+        margin: 20,
         fontSize: 32,
         fontWeight: 'bold',
-        margin: 20,
         textAlign: 'center',
     },
-    error:{
+    errorMessage:{
         color: colors.red
     }
 })
