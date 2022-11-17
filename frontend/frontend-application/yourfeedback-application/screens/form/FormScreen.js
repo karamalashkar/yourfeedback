@@ -1,10 +1,14 @@
 import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
 import { styles } from "./style";
+import { useNavigation } from '@react-navigation/native';
 import Question from "../../components/question/Question";
 import { getQuestion } from "../../api/getQuestion";
+import { addFeedback } from "../../api/addFeedback";
 import { useEffect, useState } from "react";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FormScreen = ({route}) =>{
+    const navigation=useNavigation();
     const businessId=route.params.id;
     const categoryId=route.params.category_id;
     const [question,setQuestion]=useState('')
@@ -29,22 +33,26 @@ const FormScreen = ({route}) =>{
         result[index]={'question_id':question.id,'question':question.question,'response':''}
     })}
 
-    //check results before sending it to question component
-    if(Object.keys(result).length==0){
-        return null
-    }
-
-    const submitFeedback = () =>{
+    const submitFeedback = async() =>{
         if(!answerOne || !answerTwo || !answerThree || !answerFour || !answerFive){
             setErrorMessage('Fill all required responses')
             return null
         }
         //getting all entered responses
+        const userId=await AsyncStorage.getItem('id');
         result[0].response=answerOne
         result[1].response=answerTwo
         result[2].response=answerThree
         result[3].response=answerFour
         result[4].response=answerFive
+
+        const res=await addFeedback(userId,businessId,result)
+        navigation.push('Home')
+    }
+
+    //check results before sending it to question component
+    if(Object.keys(result).length==0){
+        return null
     }
 
     return(
