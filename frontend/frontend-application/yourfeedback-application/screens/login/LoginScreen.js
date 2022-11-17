@@ -1,11 +1,12 @@
 import { Image, KeyboardAvoidingView, Pressable, Text, View } from "react-native";
 import { styles } from "./style";
 import { useNavigation } from '@react-navigation/native';
-import Input from "../../components/input/Input";
-import Button from "../../components/button/Button";
 import { useState } from "react";
 import { login } from "../../api/login";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import Input from "../../components/input/Input";
+import Button from "../../components/button/Button";
+import { store } from "../../redux/Store";
+import { setToken, updateUser } from "../../redux/Slices/userSlice";
 
 const LoginScreen = () =>{
     const navigation=useNavigation();
@@ -24,8 +25,12 @@ const LoginScreen = () =>{
                 setErrorMessage('Invalid Credentials');
                 return null                        
             }
-            AsyncStorage.setItem('id',response.user.id.toString())
-            AsyncStorage.setItem('token',response.result.token)
+            store.dispatch(updateUser({
+                user:response.user
+            }))
+            store.dispatch(setToken({
+                token:response.result.token
+            }))
         }
     }
 
@@ -33,7 +38,7 @@ const LoginScreen = () =>{
         <KeyboardAvoidingView behavior="height">
         <View style={styles.component}>
             <View style={styles.body}>
-                <Image source={require('../.././assets/logo.png')} style={styles.image}/>
+                <Image source={require('../.././assets/image.png')} style={styles.image}/>
                 <Text style={styles.text}>Give me your Feedback</Text>
                 <Text style={styles.errorMessage}>{errorMessage}</Text>
                 <Input placeholder='Email' state={false} setValue={setEmail} setError={setErrorMessage}/>
