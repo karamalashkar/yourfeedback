@@ -10,17 +10,20 @@ const HomeScreen = () =>{
     const navigation=useNavigation();
     const [data,setData]=useState('')
     const [business,setBusiness]=useState('')
+    const [locationPermission,setLocationPermission]=useState('')
     const [errorMessage, setErrorMessage] = useState('');
     useEffect(() => {
         const home = async() => {
             //ask for location permission
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
+                setLocationPermission('')
                 setErrorMessage('Permission to access location was denied');
                 return;
             }
 
             setErrorMessage('');
+            setLocationPermission('done')
             let location = await Location.getCurrentPositionAsync({});
             const latitude=location.coords.latitude;
             const longitude=location.coords.longitude;
@@ -37,7 +40,18 @@ const HomeScreen = () =>{
         home();
     }, []);
 
-    if (!data)
+    if (!data){
+        if(!locationPermission){
+            return(
+                <>
+                    <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
+                        <Text style={styles.searchText}>Search</Text>
+                    </Pressable>
+                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                </>
+            )    
+        }
+
         return (
             <>
                 <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
@@ -46,13 +60,13 @@ const HomeScreen = () =>{
                 <Image source={require('../../assets/data.png')} style={styles.image}/>
             </>
         )
+    }
     
     return(
         <View style={styles.home}>
             <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
                 <Text style={styles.searchText}>Search</Text>
             </Pressable>
-            <Text>{errorMessage}</Text>
             <ScrollView style={styles.scroll}>
             {Object.values(business).map((business,index)=>{
                 return(
