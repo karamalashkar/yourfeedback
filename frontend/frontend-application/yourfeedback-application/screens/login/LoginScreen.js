@@ -38,7 +38,7 @@ const LoginScreen = () =>{
         <KeyboardAvoidingView behavior="height">
         <View style={styles.component}>
             <View style={styles.body}>
-                <Image source={require('../.././assets/image.png')} style={styles.image}/>
+                <Image source={require('../.././assets/logo.png')} style={styles.image}/>
                 <Text style={styles.text}>Give me your Feedback</Text>
                 <Text style={styles.errorMessage}>{errorMessage}</Text>
                 <Input placeholder='Email' state={false} setValue={setEmail} setError={setErrorMessage}/>
