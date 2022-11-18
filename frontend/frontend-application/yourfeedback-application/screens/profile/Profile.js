@@ -25,7 +25,6 @@ const ProfileScreen = () =>{
         const getCountFeedback=async () =>{
             const userId=await AsyncStorage.getItem('id');
             const response=await countFeedback(userId);
-            console.log('count',response)
             if(response.status=='success'){
                 setFeedback(response.data)
             }else{
@@ -33,7 +32,6 @@ const ProfileScreen = () =>{
             }
         }
         const getCountDiscount=async () =>{
-            const userId=await AsyncStorage.getItem('id');
             const response=await countDiscount(userId);
             if(response.status=='success'){
                 setDiscount(response.data)
