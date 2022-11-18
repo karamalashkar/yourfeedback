@@ -1,18 +1,18 @@
 import { Image, ScrollView } from "react-native";
 import { styles } from "./style";
 import { DiscountBox } from "../../components/box/Box";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getDiscount } from "../../api/getDiscount";
 import { useState,useEffect } from "react";
+import { store } from "../../redux/Store";
 
 const DiscountScreen = () =>{
     const [data,setData]=useState('')
     const [discount,setDiscount]=useState('')
     useEffect(()=>{
         const discount=async () =>{
-            const userId=await AsyncStorage.getItem('id');
+            let userId=store.getState().user.id
             const response=await getDiscount(userId);
-            if(response.status=='failde'){
+            if(response.status=='failed' || response.data.length==0){
                 setData(false)
                 return null
             }
