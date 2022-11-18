@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../screens/home/HomeScreen";
 import BusinessScreen from "../screens/business/BusinessScreen";
 import FormScreen from "../screens/form/FormScreen";
+import SearchScreen from "../screens/search/SearchScreen";
 
 export function HomeStackNavigation() {
   const RootStackNav = createStackNavigator();
@@ -29,13 +30,21 @@ export function HomeStackNavigation() {
         />
 
         <RootStackNav.Screen
-          name="Form"
+          name="Feedback-Form"
           component={FormScreen}
           options={{
             headerLeft: () => {}
           }}  
         />
-        
+
+        <RootStackNav.Screen
+          name="Search"
+          component={SearchScreen}
+          options={{
+            headerShown: false
+          }}
+        />
+
       </RootStackNav.Navigator>
     </NavigationContainer>
   );
