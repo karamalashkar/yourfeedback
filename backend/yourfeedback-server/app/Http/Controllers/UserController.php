@@ -69,9 +69,11 @@ class UserController extends Controller
         $user_id=$request->user_id;
         $business_id=$request->business_id;
         $value=$request->value;
+        $code=$request->code;
+        $used=$request->used;
 
         $user=User::find($user_id);
-        $response=$user->businessDiscount()->attach($business_id,['value'=>$value]);
+        $response=$user->businessDiscount()->attach($business_id,['value'=>$value,'code'=>$code,'used'=>$used]);
 
         return response()->json([
             'status' => 'success',
