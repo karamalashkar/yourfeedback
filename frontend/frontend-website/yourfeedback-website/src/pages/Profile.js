@@ -24,6 +24,7 @@ const Profile = ()=>{
 
         business();
     },[])
+
     return(
         <>
             <div className="flex h-auto lg:h-screen bg-gray-100">
