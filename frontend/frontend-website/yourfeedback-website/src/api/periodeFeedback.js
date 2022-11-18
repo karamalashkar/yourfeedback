@@ -1,12 +1,12 @@
-import axios from "axios";
-import { baseURL } from "./base";
+import axiosInstance from "./base";
+import { getToken } from "../utilities/getToken";
 
 export const feedbackPeriode = async(id)=>{
-    const resultWeek =await axios.get(`${baseURL}/feedback_week/${id}`);
+    const resultWeek =await axiosInstance(getToken()).get(`/feedback_week/${id}`);
     const weekCount=resultWeek.data.data;
-    const resultMonth = await axios.get(`${baseURL}/feedback_month/${id}`);
+    const resultMonth = await axiosInstance(getToken()).get(`/feedback_month/${id}`);
     const monthCount=resultMonth.data.data;
-    const resultYear = await axios.get(`${baseURL}/feedback_year/${id}`);
+    const resultYear = await axiosInstance(getToken()).get(`/feedback_year/${id}`);
     const yearCount=resultYear.data.data;
 
     return [
