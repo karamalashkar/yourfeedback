@@ -5,7 +5,7 @@ import Question from "../../components/question/Question";
 import { getQuestion } from "../../api/getQuestion";
 import { addFeedback } from "../../api/addFeedback";
 import { useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { store } from "../../redux/Store";
 
 const FormScreen = ({route}) =>{
     const navigation=useNavigation();
@@ -39,14 +39,13 @@ const FormScreen = ({route}) =>{
             return null
         }
         //getting all entered responses
-        const userId=await AsyncStorage.getItem('id');
+        let userId=store.getState().user.id
         result[0].response=answerOne
         result[1].response=answerTwo
         result[2].response=answerThree
         result[3].response=answerFour
         result[4].response=answerFive
-
-        const res=await addFeedback(userId,businessId,result)
+        const response=await addFeedback(userId,businessId,result)
         navigation.push('Home')
     }
 
