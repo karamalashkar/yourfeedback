@@ -6,12 +6,14 @@ import { useState,useEffect } from "react";
 import { getCountFeedback } from "../api/countFeedback";
 import { getCountDiscount } from "../api/countDiscount";
 import { feedbackPeriode } from "../api/periodeFeedback";
+import { discountPeriode } from "../api/periodeDiscount";
 
 const Home = ()=>{
     const business_id=localStorage.getItem('id');
     const [countF,setCountFeedback]=useState('')
     const [countD,setCountDiscount]=useState('')
     const [feedback,setFeedback]=useState('')
+    const [discount,setDiscount]=useState('')
     useEffect(()=>{
         const countFeedback = async ()=>{
             const result=await getCountFeedback(business_id);
@@ -28,9 +30,15 @@ const Home = ()=>{
             setFeedback(result)
         }
 
+        const discount = async ()=>{
+            const result=await discountPeriode(business_id);
+            setDiscount(result)
+        }
+
         countFeedback();
         countDiscount();
         feedback();
+        discount();
     },[])
     
     return(
@@ -48,7 +56,7 @@ const Home = ()=>{
                     </div>
                     <div className="flex flex-col items-center my-12 h-auto w-2/4 lg:flex-row">
                         <Chart text='Feedback' data={feedback} />   
-                        <Chart />
+                        <Chart text='Discount' data={discount} />
                     </div>    
                 </div>
             </div>
