@@ -1,7 +1,7 @@
 import axiosInstance from "./base";
 import { getToken } from "../utilities/getToken";
 
-//get feedback by user id
+//get discount by user id
 export const getDiscount = async(id)=>{
     try{
         const result=await axiosInstance(getToken()).get(`/discount/${id}`);
