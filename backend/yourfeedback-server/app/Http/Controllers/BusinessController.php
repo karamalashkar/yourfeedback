@@ -378,6 +378,15 @@ class BusinessController extends Controller{
         ]);
     }
 
+    function updateDiscount(Request $request){
+        $code=$request->code;
+
+        $business=Business::where('code',$code);
+        if($business){
+            $response=Discount::where('code',$code)
+            ->update(['used'=>'1']);
+        }
+    }
 
 }
 
