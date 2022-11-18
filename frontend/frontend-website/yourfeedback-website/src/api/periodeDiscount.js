@@ -8,4 +8,10 @@ export const discountPeriode = async(id)=>{
     const monthCount=resultMonth.data.data;
     const resultYear = await axios.get(`${baseURL}/discount_year/${id}`);
     const yearCount=resultYear.data.data;
+
+    return [
+        {name:'Week',Discount:weekCount},
+        {name:'Month',Discount:monthCount},
+        {name:'Year',Discount:yearCount}
+    ]
 }
