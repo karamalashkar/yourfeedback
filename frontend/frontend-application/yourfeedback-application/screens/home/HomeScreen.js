@@ -1,8 +1,7 @@
-import { Image, ScrollView, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { styles } from "./style";
 import { useNavigation } from '@react-navigation/native';
 import { useState,useEffect } from "react";
-import Search from "../../components/search/Search";
 import Card from "../../components/card/Card";
 import * as Location from 'expo-location';
 import { getBusiness } from "../../api/getBusiness";
@@ -12,9 +11,8 @@ const HomeScreen = () =>{
     const [data,setData]=useState('')
     const [business,setBusiness]=useState('')
     const [errorMessage, setErrorMessage] = useState('');
-
     useEffect(() => {
-        (async () => {
+        const home = async() => {
             //ask for location permission
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
@@ -33,28 +31,32 @@ const HomeScreen = () =>{
             }
 
             setData(true)
-            setBusiness(response.data)        
-        })
+            setBusiness(response.data)
+        }
 
-        ();
+        home();
     }, []);
 
     if (!data)
         return (
             <>
-                <Search />
+                <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
+                    <Text style={styles.searchText}>Search</Text>
+                </Pressable>
                 <Image source={require('../../assets/data.png')} style={styles.image}/>
             </>
         )
     
     return(
         <View style={styles.home}>
-            <Search />
+            <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
+                <Text style={styles.searchText}>Search</Text>
+            </Pressable>
             <Text>{errorMessage}</Text>
             <ScrollView style={styles.scroll}>
             {Object.values(business).map((business,index)=>{
                 return(
-                    <Card key={index} image={business.image} 
+                    <Card key={index} image={{uri: business.image}} 
                     name={business.name} onPress={()=>navigation.push('Business',{
                         id: business.id,
                         image: business.image,
