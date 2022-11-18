@@ -1,4 +1,3 @@
-import axios from "axios";
 import axiosInstance from "./base";
 import { getToken } from "../utilities/getToken";
 const date=new Date();
