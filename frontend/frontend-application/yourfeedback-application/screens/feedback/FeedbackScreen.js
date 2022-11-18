@@ -30,9 +30,9 @@ const FeedbackScreen = () =>{
         )
     return(
         <ScrollView>
-            {Object.values(feedback).map((feedback)=>{
+            {Object.values(feedback).map((feedback,index)=>{
                 return(
-                    <FeedbackBox name={feedback[0].business.name} date={feedback[0].created_at.substring(0,10)} />
+                    <FeedbackBox key={index} name={feedback[0].business.name} date={feedback[0].created_at.substring(0,10)} />
                 )
             })}
         </ScrollView>
