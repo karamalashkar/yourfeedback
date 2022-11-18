@@ -31,6 +31,10 @@ const Discount = ()=>{
         )    
     }
 
+    const update = async()=>{
+        await updateDiscount(discountCode)
+    }
+
     return(
         <>
             <div className="flex h-auto sm:h-auto md:h-auto lg:h-screen xl:h-screen bg-gray-100">
@@ -42,7 +46,7 @@ const Discount = ()=>{
                     <div className="w-full flex flex-col bg-red mb-8 lg:flex-row">
                         <input type='text' placeholder="Discount Code" className="ml-16 p-4 border-2 border-gray-300 outline-0" 
                         onChange={e => setDiscountCode(e.target.value)}/>
-                        <button className="w-32 p-4 bg-gray-300 text-white font-semibold">Used</button>
+                        <button className="w-32 p-4 bg-gray-300 text-white font-semibold" onClick={update}>Used</button>
                     </div>
 
                     <div className="flex flex-wrap justify-evenly">
