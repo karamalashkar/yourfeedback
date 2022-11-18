@@ -1,3 +1,5 @@
+import { addDiscount } from "../api/addDiscount";
+
 var discountValue=0;
 
 const helpfulWords=['great','important','crazy','make','adjust','increase','improve','impressed','excellent','better'];
@@ -13,6 +15,11 @@ const checkFeedbackAnswer = async(userId, businessId, data) =>{
             }
         }
     })}
+
+    if(discountValue <= 0){
+        return null;
+    }
+    addDiscount(userId,businessId,discountValue);
 }
 
 export default checkFeedbackAnswer;
