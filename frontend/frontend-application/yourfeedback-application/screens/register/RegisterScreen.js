@@ -57,7 +57,7 @@ const RegisterScreen = () =>{
         <View style={styles.component}>
             <Image source={require('../.././assets/logo.png')} style={styles.image}/>
             <Text style={styles.text}>Sign Up</Text>
-            <Text style={styles.error}>{errorMessage}</Text>
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
             <Input placeholder='Name' state={false} 
             setValue={setName} 
             setError={setErrorMessage}/>
