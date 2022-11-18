@@ -4,8 +4,10 @@ import { colors } from "../../constants/colors";
 import { useState } from "react";
 import { searchBusinessByName } from "../../api/searchBusiness";
 import SearchItem from "../../components/searchItem/SearchItem";
+import { useNavigation } from "@react-navigation/native";
 
 const SearchScreen = () =>{
+    const navigation=useNavigation();
     const [business,setBusiness]=useState('')
     const [errorMessage,setErrorMessage]=useState('')
     const searchBusiness = async(text)=>{
@@ -40,7 +42,14 @@ const SearchScreen = () =>{
             <ScrollView>
                 {Object.values(business).map((business)=>{
                     return(
-                        <SearchItem key={business.id} image={{uri:business.image}} name={business.name} />
+                        <SearchItem key={business.id} image={{uri:business.image}} name={business.name} onPress={()=>navigation.push('Business',{
+                            id: business.id,
+                            name: business.name, 
+                            bio: business.bio,
+                            category_id: business.category_id,
+                            image: business.image,
+                            feedback_code: business.feedback_code                 
+                        })}/>
                     );
                 })}
             </ScrollView>
