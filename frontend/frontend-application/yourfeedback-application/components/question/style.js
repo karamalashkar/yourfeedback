@@ -9,10 +9,11 @@ export const styles=StyleSheet.create({
         marginBottom: 20
     },
     question:{
-        fontSize: 18
+        fontSize: 18,
+        width: '70%'
     },
     input:{
-        width: '75%',
+        width: '70%',
         fontSize: 14,
         marginTop: 5,
         outlineStyle: 'none',
