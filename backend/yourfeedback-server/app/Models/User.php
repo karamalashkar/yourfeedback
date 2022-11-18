@@ -40,7 +40,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function businessDiscount(){
-        return $this->belongsToMany(Business::class,'discounts')->withPivot(['value'])->withTimestamps();
+        return $this->belongsToMany(Business::class,'discounts')->withPivot(['value','code','used'])->withTimestamps();
     }
 
     public function discount(){
