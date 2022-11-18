@@ -6,6 +6,7 @@ import Home from './pages/Home';
 import Discount from './pages/Discount';
 import Profile from './pages/Profile';
 import Feedback from './pages/Feedback';
+import ProtectedRoute from './pages/ProtectedRoute';
 
 function App() {
   return (
@@ -14,10 +15,22 @@ function App() {
         <Routes>
           <Route path='/' element= {<Landing />} />
           <Route path='/signup' element= {<Signup />} />
-          <Route path='/home' element= {<Home />} />
-          <Route path='/feedback' element= {<Feedback />} />
-          <Route path='/discount' element= {<Discount />} />
-          <Route path='/profile' element= {<Profile />} />
+          <Route path='/home' element= {
+          <ProtectedRoute>
+            <Home />
+          </ProtectedRoute>} />
+          <Route path='/feedback' element= {
+          <ProtectedRoute>
+            <Feedback />
+          </ProtectedRoute>} />
+          <Route path='/discount' element= {
+          <ProtectedRoute>
+            <Discount />
+          </ProtectedRoute>} />
+          <Route path='/profile' element= {
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>} />
         </Routes>
       </BrowserRouter>      
     </div>
