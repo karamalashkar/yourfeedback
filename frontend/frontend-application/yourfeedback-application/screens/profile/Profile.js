@@ -23,7 +23,6 @@ const ProfileScreen = () =>{
             }
         }
         const getCountFeedback=async () =>{
-            const userId=await AsyncStorage.getItem('id');
             const response=await countFeedback(userId);
             if(response.status=='success'){
                 setFeedback(response.data)
