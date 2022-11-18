@@ -1,8 +1,7 @@
-import axios from "axios";
-import { baseURL } from "./base";
+import axiosInstance from "./base";
 
 //add a new business
 export const signup = async (data)=>{
-    const result = await axios.post(baseURL,data);
+    const result = await axiosInstance.post('',data);
     return result.data.status;
 }
