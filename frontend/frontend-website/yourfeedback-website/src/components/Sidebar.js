@@ -3,8 +3,15 @@ import { AiFillHome } from "react-icons/ai"
 import { MdFeedback } from "react-icons/md";
 import { TbDiscount2 } from "react-icons/tb";
 import { FiLogOut } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () =>{
+    const navigation=useNavigate();
+    const logout = () =>{
+        localStorage.clear();
+        navigation('/')
+    }
+    
     return(
         <div className="w-1/5 h-full fixed flex flex-col items-center bg-red-700">
             <div className="flex flex-col h-4/5 w-3/4 mt-4">
@@ -14,7 +21,7 @@ const Sidebar = () =>{
                 <a href='/discount' className="ml-8 my-4 lg: flex text-white items-center text-2xl font-semibold"><TbDiscount2 /> <span className="hidden lg:block">Discount</span></a>
             </div>
             <div className="flex flex-col h-1/5 w-3/4">
-                <a className="ml-8 my-4 lg: flex text-white items-center text-2xl font-semibold"><FiLogOut /> <span className="hidden lg:block">Logout</span></a>
+                <button onClick={logout}><a className="ml-8 my-4 lg: flex text-white items-center text-2xl font-semibold"><FiLogOut /> <span className="hidden lg:block">Logout</span></a></button>
             </div>
         </div>
     )
