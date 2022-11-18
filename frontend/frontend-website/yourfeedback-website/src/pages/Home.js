@@ -5,12 +5,13 @@ import Chart from "../components/Chart";
 import { useState,useEffect } from "react";
 import { getCountFeedback } from "../api/countFeedback";
 import { getCountDiscount } from "../api/countDiscount";
+import { feedbackPeriode } from "../api/periodeFeedback";
 
 const Home = ()=>{
     const business_id=localStorage.getItem('id');
     const [countF,setCountFeedback]=useState('')
     const [countD,setCountDiscount]=useState('')
-
+    const [feedback,setFeedback]=useState('')
     useEffect(()=>{
         const countFeedback = async ()=>{
             const result=await getCountFeedback(business_id);
@@ -22,8 +23,14 @@ const Home = ()=>{
             setCountDiscount(result)
         }
 
+        const feedback = async ()=>{
+            const result=await feedbackPeriode(business_id);
+            setFeedback(result)
+        }
+
         countFeedback();
         countDiscount();
+        feedback();
     },[])
     
     return(
@@ -40,7 +47,7 @@ const Home = ()=>{
                         <Box />
                     </div>
                     <div className="flex flex-col items-center my-12 h-auto w-2/4 lg:flex-row">
-                        <Chart />   
+                        <Chart text='Feedback' data={feedback} />   
                         <Chart />
                     </div>    
                 </div>
