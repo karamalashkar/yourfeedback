@@ -5,10 +5,9 @@ import Button from "../../components/button/Button";
 import { getUser } from "../../api/getUser";
 import { countFeedback } from "../../api/countFeedback";
 import { countDiscount } from "../../api/countDiscount";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from "react";
 import { store } from "../../redux/Store";
-import {  } from "../../redux/Slices/userSlice";
+import {deleteUser} from "../../redux/Slices/userSlice";
 
 const ProfileScreen = () =>{
     const [name,setName]=useState('')
@@ -44,6 +43,10 @@ const ProfileScreen = () =>{
         getCountDiscount();
     },[])
     
+    const logout = ()=>{
+        store.dispatch(deleteUser())
+    }
+
     return(
         <View style={styles.profile}>
             <Text style={styles.user}>{name}</Text>
@@ -51,7 +54,7 @@ const ProfileScreen = () =>{
                 <ProfileBox name='Feedback' value={feedback} />
                 <ProfileBox name='Discount' value={discount} />
             </View>
-            <Button text='Logout' />
+            <Button text='Logout' onPress={logout}/>
         </View>
     )
 }
