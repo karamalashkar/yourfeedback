@@ -18,7 +18,6 @@ const FeedbackScreen = () =>{
             }
             setData(true)
             setFeedback(response.data)
-            console.log('feedback',response.data)
         }
 
         feedback();
