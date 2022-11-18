@@ -22,11 +22,12 @@ Route::group(["prefix"=> "v1"], function(){
             Route::get('/near_business/{latitude}/{longitude}',[BusinessController::class,'nearBusiness']);
             Route::get('/search_business/{word}',[BusinessController::class,'searchBusiness']);
             Route::get('/make_feedback/{id}/{business_id}',[BusinessController::class,'canMakeFeedback']);
+            
         });
     });
 
     Route::group(["prefix"=> "business"], function(){
-        Route::group(["middleware" => "auth:business"], function(){
+        //Route::group(["middleware" => "auth:business"], function(){
             Route::get('/{id}',[BusinessController::class,'getBusiness']);
             Route::post('/edit',[BusinessController::class,'editBusiness']);
             Route::get('/count_discount/{id}',[BusinessController::class,'countDiscount']);
@@ -39,11 +40,13 @@ Route::group(["prefix"=> "v1"], function(){
             Route::get('/feedback_week/{id}',[BusinessController::class,'feedbackWeek']); 
             Route::get('/feedback_month/{id}',[BusinessController::class,'feedbackMonth']);
             Route::get('/feedback_year/{id}',[BusinessController::class,'feedbackYear']);
-        });        
+            Route::get('/update_discount/{code}',[BusinessController::class,'updateDiscount']);
+        //});        
     });
 
     Route::post('/user',[UserController::class,'addUser']);
     Route::post('/business',[BusinessController::class,'addBusiness']);
     Route::post('/login',[AuthController::class,'login']);
     Route::post('/business_login',[AuthController::class,'businessLogin']);
+    Route::get('/testlaravel',[UserController::class,'test']);
 });
