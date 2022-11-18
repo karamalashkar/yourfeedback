@@ -2,22 +2,23 @@ import { Image, ScrollView } from "react-native";
 import { styles } from "./style";
 import { FeedbackBox } from "../../components/box/Box";
 import { useEffect, useState } from "react";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getFeedback } from "../../api/getFeedback";
+import { store } from "../../redux/Store";
 
 const FeedbackScreen = () =>{
     const [data,setData]=useState('')
     const [feedback,setFeedback]=useState('')
     useEffect(()=>{
         const feedback=async () =>{
-            const userId=await AsyncStorage.getItem('id');
+            let userId=store.getState().user.id
             const response=await getFeedback(userId);
-            if(response.status=='failde'){
+            if(response.status=='failed' || response.data.length==0){
                 setData(false)
                 return null
             }
             setData(true)
             setFeedback(response.data)
+            console.log('feedback',response.data)
         }
 
         feedback();
