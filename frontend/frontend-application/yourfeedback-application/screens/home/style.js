@@ -20,5 +20,11 @@ export const styles=StyleSheet.create({
     searchText:{
         marginLeft: 15,
         fontSize: 16
+    },
+    errorMessage:{
+        marginTop: 10,
+        fontSize: 16,
+        textAlign: 'center',
+        color: colors.grey
     }
 })
