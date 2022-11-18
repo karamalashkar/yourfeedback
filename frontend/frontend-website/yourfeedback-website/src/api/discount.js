@@ -1,8 +1,8 @@
-import axios from "axios";
-import { baseURL } from "./base";
+import axiosInstance from "./base";
+import { getToken } from "../utilities/getToken";
 
 //getting all discounts
 export const getDiscount = async (id)=>{
-    const result = await axios.get(`${baseURL}/discount/${id}`);
+    const result = await axiosInstance(getToken()).get(`/discount/${id}`);
     return result.data.data;
 }
