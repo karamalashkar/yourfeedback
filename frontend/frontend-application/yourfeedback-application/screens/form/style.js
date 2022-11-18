@@ -13,7 +13,7 @@ export const styles=StyleSheet.create({
         marginTop: 20,
         maxWidth: '85%'
     },
-    error:{
+    errorMessage:{
         color: colors.red,
         marginTop: 10
     },
