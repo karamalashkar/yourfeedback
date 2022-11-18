@@ -27,7 +27,7 @@ Route::group(["prefix"=> "v1"], function(){
     });
 
     Route::group(["prefix"=> "business"], function(){
-        //Route::group(["middleware" => "auth:business"], function(){
+        Route::group(["middleware" => "auth:business"], function(){
             Route::get('/{id}',[BusinessController::class,'getBusiness']);
             Route::post('/edit',[BusinessController::class,'editBusiness']);
             Route::get('/count_discount/{id}',[BusinessController::class,'countDiscount']);
@@ -41,7 +41,7 @@ Route::group(["prefix"=> "v1"], function(){
             Route::get('/feedback_month/{id}',[BusinessController::class,'feedbackMonth']);
             Route::get('/feedback_year/{id}',[BusinessController::class,'feedbackYear']);
             Route::get('/update_discount/{code}',[BusinessController::class,'updateDiscount']);
-        //});        
+        });        
     });
 
     Route::post('/user',[UserController::class,'addUser']);
