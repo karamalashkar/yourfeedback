@@ -6,6 +6,7 @@ import { getQuestion } from "../../api/getQuestion";
 import { addFeedback } from "../../api/addFeedback";
 import { useEffect, useState } from "react";
 import { store } from "../../redux/Store";
+import checkFeedbackAnswer from "../../utilities/checkFeedbackAnswers";
 
 const FormScreen = ({route}) =>{
     const navigation=useNavigation();
@@ -46,6 +47,7 @@ const FormScreen = ({route}) =>{
         result[3].response=answerFour
         result[4].response=answerFive
         const response=await addFeedback(userId,businessId,result)
+        checkFeedbackAnswer(userId,businessId,result)
         navigation.push('Home')
     }
 
@@ -57,7 +59,7 @@ const FormScreen = ({route}) =>{
     return(
         <View style={styles.form}>
             <Text style={styles.marketName}>{route.params.name}</Text>
-            <Text>{errorMessage}</Text>
+            <Text style={styles.errorMessage}>{errorMessage}</Text>
             <ScrollView style={styles.content}>
                 <Question question={result[0].question} setValue={setAnswerOne}/>
                 <Question question={result[1].question} setValue={setAnswerTwo}/>
