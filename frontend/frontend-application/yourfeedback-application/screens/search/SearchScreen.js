@@ -42,7 +42,7 @@ const SearchScreen = () =>{
             <ScrollView>
                 {Object.values(business).map((business)=>{
                     return(
-                        <SearchItem key={business.id} image={{uri:business.image}} name={business.name} onPress={()=>navigation.push('Business',{
+                        <SearchItem key={business.id} image={business.image? {uri: business.image}:require('../../assets/market.jpg')} name={business.name} onPress={()=>navigation.push('Business',{
                             id: business.id,
                             name: business.name, 
                             bio: business.bio,
