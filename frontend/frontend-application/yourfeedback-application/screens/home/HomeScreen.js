@@ -1,4 +1,4 @@
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { RefreshControl, Image, Pressable, ScrollView, Text, View } from "react-native";
 import { styles } from "./style";
 import { useNavigation } from '@react-navigation/native';
 import { useState,useEffect } from "react";
@@ -12,31 +12,34 @@ const HomeScreen = () =>{
     const [business,setBusiness]=useState('')
     const [locationPermission,setLocationPermission]=useState('')
     const [errorMessage, setErrorMessage] = useState('');
-    useEffect(() => {
-        const home = async() => {
-            //ask for location permission
-            let { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== 'granted') {
-                setLocationPermission('')
-                setErrorMessage('Permission to access location was denied');
-                return;
-            }
+    const [load,setLoad]=useState(true)
 
-            setErrorMessage('');
-            setLocationPermission('done')
-            let location = await Location.getCurrentPositionAsync({});
-            const latitude=location.coords.latitude;
-            const longitude=location.coords.longitude;
-            const response=await getBusiness(latitude,longitude);
-            if(response.data.length==0){
-                setData(false)
-                return null
-            }
-
-            setData(true)
-            setBusiness(response.data)
+    const home = async() => {
+        //ask for location permission
+        let { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+            setLocationPermission('')
+            setErrorMessage('Permission to access location was denied');
+            return;
         }
 
+        setErrorMessage('');
+        setLocationPermission('done')
+        let location = await Location.getCurrentPositionAsync({});
+        const latitude=location.coords.latitude;
+        const longitude=location.coords.longitude;
+        const response=await getBusiness(latitude,longitude);
+        if(response.data.length==0){
+            setData(false)
+            return null
+        }
+
+        setData(true)
+        setBusiness(response.data)
+        setLoad(false)
+    }
+
+    useEffect(() => {    
         home();
     }, []);
 
@@ -67,10 +70,11 @@ const HomeScreen = () =>{
             <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
                 <Text style={styles.searchText}>Search</Text>
             </Pressable>
-            <ScrollView style={styles.scroll}>
+            <ScrollView style={styles.scroll} refreshControl={<RefreshControl 
+            refreshing={load} onRefresh={home}/>} >
             {Object.values(business).map((business,index)=>{
                 return(
-                    <Card key={index} image={{uri: business.image}} 
+                    <Card key={index} image={business.image?{uri: business.image}:require('../../assets/market.jpg')} 
                     name={business.name} onPress={()=>navigation.push('Business',{
                         id: business.id,
                         image: business.image,
