@@ -12,6 +12,7 @@ const FormScreen = ({route}) =>{
     const navigation=useNavigation();
     const businessId=route.params.id;
     const categoryId=route.params.category_id;
+    const businessName= route.params.name;
     const [question,setQuestion]=useState('')
     const [answerOne,setAnswerOne]=useState('')
     const [answerTwo,setAnswerTwo]=useState('')
@@ -21,9 +22,11 @@ const FormScreen = ({route}) =>{
     const [errorMessage,setErrorMessage]=useState('')
     const result={}
     useEffect(()=>{
+        console.log('categ',categoryId)
         const getFeedbackQuestion = async () =>{
             const response=await getQuestion(categoryId);
             setQuestion(response)
+            console.log('question',question)
         }
 
         getFeedbackQuestion();
@@ -47,7 +50,7 @@ const FormScreen = ({route}) =>{
         result[3].response=answerFour
         result[4].response=answerFive
         const response=await addFeedback(userId,businessId,result)
-        checkFeedbackAnswer(userId,businessId,result)
+        checkFeedbackAnswer(userId,businessId,result,businessName)
         navigation.push('Home')
     }
 
@@ -58,7 +61,6 @@ const FormScreen = ({route}) =>{
 
     return(
         <View style={styles.form}>
-            <Text style={styles.marketName}>{route.params.name}</Text>
             <Text style={styles.errorMessage}>{errorMessage}</Text>
             <ScrollView style={styles.content}>
                 <Question question={result[0].question} setValue={setAnswerOne}/>
