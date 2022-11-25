@@ -52,13 +52,9 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | ![Profile](./readme/Profile.svg) |  |
 
 
-| Landing  | Home  |                                                
-| -----------------| -----|
-| ![Landing](./readme/login.svg) | ![Home](./readme/homeMockup.svg) | 
-
-| Business  | Feedback  |
-| -----------------| -----|
-| ![Business](./readme/business.svg) | ![Feedback](./readme/feedbackMockup.svg) |
+| Landing | Home | Business | Feedback Code |
+| -----------------| -----| -----------------| -----|
+| ![Landing](./readme/login.svg) | ![Home](./readme/homeMockup.svg) | ![Business](./readme/business.svg) | ![Feedback](./readme/feedbackMockup.svg) | 
 
 | Discount  | Profile   |
 | -----------------| -----|
@@ -95,29 +91,24 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 | -----------------| -----|
 | ![Feedback](./readme/feedbackWeb.png) | ![Discount](./readme/discountWeb.jpeg) |
 
-| Profil  | Edit Profile  |
+| Profile  | Edit Profile  |
 | -----------------| -----|
 | ![Profile](./readme/profileWeb.png) | ![Edit Profile](./readme/editProfileWeb.png) |
 
-| Landing  | Home  |                                                
-| -----------------| -----|
-| ![Landing](./readme/login.jpeg) | ![Home](./readme/home.jpeg) | 
+| Landing | Home | Business | Feedback Code |
+| -----------------| -----| -----------------| -----|
+| ![Landing](./readme/login.jpeg) | ![Home](./readme/home.jpeg) | ![Business](./readme/business.jpeg) | ![Feedback Code](./readme/code.jpeg) |
 
-| Business  | Feedback Code  |
-| -----------------| -----|
-| ![Business](./readme/business.jpeg) | ![Feedback Code](./readme/code.jpeg) |
-
-| Form  | Search   |
-| -----------------| -----|
-| ![Form](./readme/form.jpeg) | ![Profile](./readme/search.jpeg)  |
-
-| Feedback  | View Feedback  |
-| -----------------| -----|
-| ![Feedback](./readme/feedback.jpeg) | ![Feedback View](./readme/show.jpeg) |
+| Form | Search | Feedback | View Feedback |
+| -----------------| -----| -----------------| -----|
+| ![Form](./readme/form.jpeg) | ![Profile](./readme/search.jpeg)  | ![Feedback](./readme/feedback.jpeg) | ![Feedback View](./readme/show.jpeg) |
 
 | Discount  | Profile   |
 | -----------------| -----|
 | ![Discount](./readme/discount.jpeg) | ![Profile](./readme/profile.jpeg)  |
+
+
+
 
 
 <br><br>
