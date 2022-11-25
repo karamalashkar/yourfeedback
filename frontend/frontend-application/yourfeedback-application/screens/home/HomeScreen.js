@@ -5,10 +5,10 @@ import { useState,useEffect } from "react";
 import Card from "../../components/card/Card";
 import * as Location from 'expo-location';
 import { getBusiness } from "../../api/getBusiness";
+import EmptyState from "../../components/emptystate/EmptyState";
 
 const HomeScreen = () =>{
     const navigation=useNavigation();
-    const [data,setData]=useState('')
     const [business,setBusiness]=useState('')
     const [locationPermission,setLocationPermission]=useState('')
     const [errorMessage, setErrorMessage] = useState('');
@@ -20,7 +20,7 @@ const HomeScreen = () =>{
         if (status !== 'granted') {
             setLocationPermission('')
             setErrorMessage('Permission to access location was denied');
-            return;
+            return null;
         }
 
         setErrorMessage('');
@@ -30,11 +30,12 @@ const HomeScreen = () =>{
         const longitude=location.coords.longitude;
         const response=await getBusiness(latitude,longitude);
         if(response.data.length==0){
-            setData(false)
+            setErrorMessage('No Available Data')
+            setLoad(false)
+            setBusiness('')
             return null
         }
 
-        setData(true)
         setBusiness(response.data)
         setLoad(false)
     }
@@ -43,39 +44,32 @@ const HomeScreen = () =>{
         home();
     }, []);
 
-    if (!data){
+    if(!business){
         if(!locationPermission){
             return(
-                <>
-                    <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
-                        <Text style={styles.searchText}>Search</Text>
-                    </Pressable>
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
-                </>
+                <ScrollView refreshControl={<RefreshControl 
+                    refreshing={load} onRefresh={home}/>} >
+                        <EmptyState text={errorMessage} />
+                </ScrollView>
             )    
         }
-
-        return (
-            <>
-                <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
-                    <Text style={styles.searchText}>Search</Text>
-                </Pressable>
-                <Image source={require('../../assets/data.png')} style={styles.image}/>
-            </>
+        return(
+            <ScrollView refreshControl={<RefreshControl 
+                refreshing={load} onRefresh={home}/>} >
+                    <EmptyState text={'No Available Data'} />
+            </ScrollView>            
         )
     }
     
     return(
-        <View style={styles.home}>
-            <Pressable style={styles.search} onPress={()=>navigation.push('Search')}>
-                <Text style={styles.searchText}>Search</Text>
-            </Pressable>
-            <ScrollView style={styles.scroll} refreshControl={<RefreshControl 
+        <View>
+            <Text style={styles.title}>Nearby Places</Text>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.scroll} refreshControl={<RefreshControl 
             refreshing={load} onRefresh={home}/>} >
             {Object.values(business).map((business,index)=>{
                 return(
                     <Card key={index} image={business.image?{uri: business.image}:require('../../assets/market.jpg')} 
-                    name={business.name} onPress={()=>navigation.push('Business',{
+                    name={business.name} location={business.location} onPress={()=>navigation.navigate('Business',{
                         id: business.id,
                         image: business.image,
                         name: business.name,
@@ -84,8 +78,7 @@ const HomeScreen = () =>{
                         feedback_code: business.feedback_code
                     })} />    
                 )
-            })}
-                
+            })}    
             </ScrollView>
         </View>
     )
