@@ -7,11 +7,10 @@ export const styles = StyleSheet.create({
         alignItems: 'center'
     },
     box:{
-        width: '80%',
-        height: 160,
+        width: 150,
+        height: 120,
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'space-evenly',
         marginTop: 20,
         marginBottom: 20,
         borderRadius: 10,
@@ -27,8 +26,23 @@ export const styles = StyleSheet.create({
         elevation: 9,
     },
     text:{
-        fontSize: 28,
+        fontSize: 20,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
+        color: colors.white
+    },
+    head:{
+        width: '100%',
+        height: 40,
+        justifyContent: 'center',
+        backgroundColor: colors.red,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10
+    },
+    value:{
+        fontSize: 24,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        marginTop: 20
     }
 })
