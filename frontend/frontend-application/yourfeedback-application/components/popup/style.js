@@ -7,11 +7,13 @@ export const styles=StyleSheet.create({
         width: '100%',
         height: 'auto',
         alignItems: 'center',
-        position: 'absolute'
+        position: 'absolute',
+        borderRadius: 10,
     },
     content:{
         width: '90%',
         alignItems: 'center',
+        borderRadius: 10,
         backgroundColor: colors.white,
         shadowColor: "#000",
         shadowOffset: {
@@ -24,17 +26,24 @@ export const styles=StyleSheet.create({
         elevation: 9,
     },
     text:{
-        marginTop: 10,
+        marginTop: 16,
         fontSize: 20
     },
+    message:{
+        opacity: 0.5,
+        fontSize: 12,
+        maxWidth: '70%'
+    },
     error:{
-        marginTop: 10,
+        marginTop: 5,
         color: colors.red
     },
     input:{
-        width: '60%',
+        width: '73%',
         marginTop: 10,
+        marginBottom: 5,
         padding: 10,
+        borderBottomWidth: 2,
         borderBottomColor: colors.grey
     },
     button:{
@@ -48,18 +57,21 @@ export const styles=StyleSheet.create({
     },
     buttonText:{
         color: colors.white,
-        fontSize: 16
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     continueButton:{
         width: '30%',
-        height: 30,
+        height: 35,
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.red
     },
     backButton:{
         width: '30%',
-        height: 30,
+        height: 35,
+        borderRadius: 10,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: colors.grey
