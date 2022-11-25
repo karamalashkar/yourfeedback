@@ -5,11 +5,11 @@ import Button from "../../components/button/Button";
 import { useState } from "react";
 import Popup from "../../components/popup/Popup";
 import { canMakeFeedback } from "../../api/canMakeFeedback";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { store } from "../../redux/Store";
 
 const BusinessScreen = ({route}) =>{
     const navigation=useNavigation();
+    let userId=store.getState().user.id
     const businessId=route.params.id;
     const [code,setCode]=useState('')
     const [error,setError]=useState('')
@@ -24,11 +24,12 @@ const BusinessScreen = ({route}) =>{
                 setError('Wrong Code')
                 return null
             }
-            const userId=await AsyncStorage.getItem('id');
             const response=await canMakeFeedback(userId,businessId);
+            console.log(businessId)
             if(response.status=='success'){
                 if(response.data.length!=0){
                     setError('You can make one feedback by month')
+                    return null
                 }
                 else{
                     navigation.push('Feedback-Form',{
@@ -48,15 +49,18 @@ const BusinessScreen = ({route}) =>{
     }
 
     return(
-        <View>
+        <>
             <Image source={route.params.image?{uri: route.params.image}:require('../../assets/market.jpg')} style={styles.image} />
             <View style={styles.content}>
-                <Text style={styles.name}>{route.params.name}</Text>
                 <Text style={styles.body}>{route.params.bio}</Text>
-                <Button text='Feedback' onPress={()=>setIsOpen(true)} />
+            </View>
+            <View style={styles.component}>
+                <View style={styles.button}>
+                    <Button text='Feedback' onPress={()=>setIsOpen(true)} />
+                </View>
             </View>
             <Popup open={isOpen} continue={checkCode} back={goBack} error={error} setValue={setCode} />
-        </View>
+        </>
     )
 }
 
