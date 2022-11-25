@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { colors } from "../../constants/colors";
 
 export const styles=StyleSheet.create({
     card:{
@@ -7,20 +6,18 @@ export const styles=StyleSheet.create({
         alignItems: 'center',
     },
     content:{
+        marginLeft: 10,
         width: '100%',
         height: 80,
         display: 'flex',
         flexDirection: 'row',
         alignItems: 'center',
-        backgroundColor: colors.white,
-        borderBottomWidth: 2,
-        borderBottomColor: colors.grey
     },
     image:{
-        width: 65,
-        height: 60,
+        width: 55,
+        height: 55,
         marginLeft: 10,
-        borderRadius: 50
+        borderRadius: 10
     },
     text:{
         margin: 20,
