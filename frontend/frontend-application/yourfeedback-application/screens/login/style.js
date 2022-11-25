@@ -3,40 +3,42 @@ import { colors } from "../../constants/colors";
 
 export const styles=StyleSheet.create({
     component:{
-        display: 'flex',
-        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
         height: '100%'
     },
     body:{
-        width: '100%',
-        height: '92%',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '90%',
+        height: '90%'
     },
     image:{
         width: 250,
         height: 150,
         borderRadius: 10,
     },
-    text:{
-        margin: 20,
-        fontSize: 32,
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
     errorMessage:{
-        color: colors.red
+        color: colors.red,
+        textAlign: 'center',
+        marginBottom: 16
+    },
+    form:{
+        width: '100%'
+    },
+    text:{
+        marginBottom: 15,
+        fontSize: 20,
+        fontWeight: 'bold'
     },
     footer:{
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0,
         backgroundColor: colors.red,
+        width: '100%',
+        height: 68,
     },
     footerText:{
-        color: colors.white
+        color: colors.white,
+        fontWeight: 'bold'
     }
 })
