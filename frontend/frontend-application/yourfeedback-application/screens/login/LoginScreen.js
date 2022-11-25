@@ -7,6 +7,7 @@ import Input from "../../components/input/Input";
 import Button from "../../components/button/Button";
 import { store } from "../../redux/Store";
 import { setToken, updateUser } from "../../redux/Slices/userSlice";
+import { colors } from "../../constants/colors";
 
 const LoginScreen = () =>{
     const navigation=useNavigation();
@@ -35,23 +36,25 @@ const LoginScreen = () =>{
     }
 
     return(
-        <KeyboardAvoidingView behavior="height">
-        <View style={styles.component}>
-            <View style={styles.body}>
-                <Image source={require('../.././assets/logo.png')} style={styles.image}/>
-                <Text style={styles.text}>Give me your Feedback</Text>
-                <Text style={styles.errorMessage}>{errorMessage}</Text>
-                <Input placeholder='Email' state={false} setValue={setEmail} setError={setErrorMessage}/>
-                <Input placeholder='Password' state={true} setValue={setPassword} setError={setErrorMessage}/>
-                <Button text='Login' onPress={loginUser}/>
-                <Pressable onPress={()=>navigation.push('Register')}>
-                    <Text>Don't have an account? Join Now</Text>
-                </Pressable>
+        <KeyboardAvoidingView>
+            <View style={styles.component}>
+                <View style={styles.body}>
+                    <Image source={require('../.././assets/logo.png')} style={styles.image}/>
+                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    <View style={styles.form}>
+                        <Text style={styles.text}>Login to your Account</Text>
+                        <Input placeholder='Email' state={false} setValue={setEmail} setError={setErrorMessage}/>
+                        <Input placeholder='Password' state={true} setValue={setPassword} setError={setErrorMessage}/>
+                        <Button text='Login' onPress={loginUser}/>
+                    </View>
+                    <Pressable onPress={()=>navigation.push('Register')}>
+                        <Text style={{textAlign: 'center'}}>Don't have an account? <Text style={{color:colors.red}}>Join Now</Text></Text>
+                    </Pressable>
+                </View>
+                <View style={styles.footer}>
+                    <Text style={styles.footerText}>Discount on your helpful feedback</Text>
+                </View>
             </View>
-            <View style={styles.footer}>
-                <Text style={styles.footerText}>Discount on your helpful feedback</Text>
-            </View>
-        </View>
         </KeyboardAvoidingView>
     )
 }
