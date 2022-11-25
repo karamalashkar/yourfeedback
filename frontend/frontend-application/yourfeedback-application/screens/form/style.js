@@ -7,12 +7,6 @@ export const styles=StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-evenly',
     },
-    marketName:{
-        fontSize: 28,
-        fontWeight: 'bold',
-        marginTop: 20,
-        maxWidth: '85%'
-    },
     errorMessage:{
         color: colors.red,
         marginTop: 10
@@ -20,7 +14,7 @@ export const styles=StyleSheet.create({
     content:{
         width: '100%',
         height: '90%',
-        marginTop: 30
+        marginTop: 20,
     },
     button:{
         alignItems: 'center'
@@ -35,6 +29,7 @@ export const styles=StyleSheet.create({
         backgroundColor: colors.red
     },
     text:{
-        color: colors.white
+        color: colors.white,
+        fontWeight: 'bold'
     }
 })
