@@ -3,13 +3,14 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Feather from 'react-native-vector-icons/Feather';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import { colors } from "../constants/colors";
 import { HomeStackNavigation } from "./HomeStackNavigation";
-import FeedbackScreen from "../screens/feedback/FeedbackScreen";
-import DiscountScreen from "../screens/discount/DiscountScreen";
-import ProfileScreen from "../screens/profile/Profile";
+import { SearchStackNavigation } from "./SearchStackNavigation";
+import { FeedbackStackNavigation } from "./FeedbackStackNavigation";
+import { DiscountStackNavigation } from "./DiscountStackNavigation";
+import { ProfileStackNavigation } from "./ProfileStackNavigation";
+import Bar from "../components/bar/Bar";
 
 export function BottomTabNavigation (){
     const BottomTabsNav = createBottomTabNavigator();
@@ -21,22 +22,22 @@ export function BottomTabNavigation (){
           independent={true} >
         <BottomTabsNav.Navigator
           initialRouteName="HomeScreen"
-          tabBarOptions={{
-            activeTintColor: colors.white,
-            inactiveTintColor: colors.white,
-            showLabel: false,
-            allowFontScaling: false,
-            keyboardHidesTabBar: true,
-            shadowColor: '#FFF',
-            labelStyle: {
+          screenOptions={{
+            'tabBarHideOnKeyboard': true,
+            'tabBarActiveTintColor': colors.white,
+            'tabBarInactiveTintColor': colors.white,
+            'tabBarAllowFontScaling': false,
+            'tabBarShowLabel': true,
+            'tabBarStyle':{
+              backgroundColor: colors.red
+            },
+            'tabBarLabelStyle':{
               fontWeight: "bold",
-              fontSize: 10,
+              fontSize: 10, 
             },
-            tabStyle:{
-                backgroundColor: colors.red,
-            },
-          }}
-        >
+            headerShown: false
+            }} >
+
           <BottomTabsNav.Screen
             name="HomeScreen"
             component={HomeStackNavigation}
@@ -45,84 +46,78 @@ export function BottomTabNavigation (){
               tabBarIcon: ({ focused, color, size }) => (
                 <Entypo
                   name={"home"}
-                  size={28}
+                  size={24}
                   color={color}
                 />
               ),
-              headerStyle:{
-                backgroundColor: colors.red,
-              },
-              headerTitleStyle:{
-                color: colors.white,
-                fontWeight: 'bold',
-                fontSize: 25
-              }
             }}
           />
+
+          <BottomTabsNav.Screen
+            name="SearchScreen"
+            component={SearchStackNavigation}
+            options={{
+              title: 'Search',
+              tabBarIcon: ({ focused, color, size }) => (
+                <FontAwesome5
+                  name={"search"}
+                  size={20}
+                  color={color}
+                />
+              ),
+            }}
+          />
+
           <BottomTabsNav.Screen
             name="FeedbackScreen"
-            component={FeedbackScreen}
+            component={FeedbackStackNavigation}
             options={{
               title: 'Feedback',
               tabBarIcon: ({ focused, color, size }) => (
                 <MaterialIcons
                   name={"feedback"}
-                  size={28}
+                  size={24}
                   color={color}
                 />
               ),
-              headerStyle:{
-                backgroundColor: colors.red,
-              },
-              headerTitleStyle:{
-                color: colors.white,
-                fontWeight: 'bold',
-                fontSize: 25
-              }
             }}
           />
           <BottomTabsNav.Screen
             name="DiscountScreen"
-            component={DiscountScreen}
+            component={DiscountStackNavigation}
             options={{
               title: 'Discount',
               tabBarIcon: ({ focused, color, size }) => (
-                <Feather
-                  name={"credit-card"}
-                  size={28}
+                <FontAwesome5
+                  name={"percent"}
+                  size={20}
                   color={color}
                 />
               ),
+              headerTintColor: colors.white,
               headerStyle:{
-                backgroundColor: colors.red,
-              },
-              headerTitleStyle:{
-                color: colors.white,
-                fontWeight: 'bold',
-                fontSize: 25
-              }
+              backgroundColor: colors.red
+            },
+            headerTitle: () => <Bar text={'Discount'}/>
             }}
           />
           <BottomTabsNav.Screen
             name="ProfileScreen"
-            component={ProfileScreen}
+            component={ProfileStackNavigation}
             options={{
               title: 'Profile',
               tabBarIcon: ({ focused, color, size }) => (
                 <FontAwesome5
                   name={"user-alt"}
-                  size={28}
+                  size={20}
                   color={color}
                 />
               ),
+              headerTintColor: colors.white,
               headerStyle:{
-                backgroundColor: colors.red,
-              },
-              headerTitleStyle:{
-                color: colors.white,
-                fontWeight: 'bold',
-                fontSize: 25
-              }
+              backgroundColor: colors.red
+            },
+            headerTitle: () => <Bar text={'Profile'}/>
             }}
           />
         </BottomTabsNav.Navigator>
