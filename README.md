@@ -4,7 +4,7 @@
 
 > Your feedback is a feedback system used by small businesses to get feedback from its customer's  
 
-**[PROJECT PHILOSOPHY](https://github.com/julescript/well_app#-project-philosophy) • [WIREFRAMES](https://github.com/julescript/well_app#-wireframes) • [TECH STACK](https://github.com/julescript/well_app#-tech-stack) • [IMPLEMENTATION](https://github.com/julescript/well_app#-impplementation) • [HOW TO RUN?](https://github.com/julescript/well_app#-how-to-run)**
+**[PROJECT PHILOSOPHY](https://github.com/karamalashkar/yourfeedback#-project-philosophy) • [WIREFRAMES](https://github.com/karamalashkar/yourfeedback#-wireframes) • [TECH STACK](https://github.com/karamalashkar/yourfeedback#-tech-stack) • [IMPLEMENTATION](https://github.com/karamalashkar/yourfeedback#-impplementation) • [HOW TO RUN?](https://github.com/karamalashkar/yourfeedback#-how-to-run)**
 
 </div>
 
@@ -13,15 +13,24 @@
 
 <img src="./readme/title2.svg"/>
 
-> The website is a admin panel used by businesses to check allthings related to their feedback system. Admin can view the total number of feedback and discount in week, month, year. Also can check the all the feedback, and discounts. Admin can also update his profile informations.
-> 
-> The mobile application is used by user to view all nearst businesses and make feedback. User can seach for any business, view the feedback that he maked, check if he got a discount. 
+> Your feedback is an application can be used by small businesses to get feedback from its customer. To make a feedback, user should use the mobile application, and get the feedback code from the market to be able to make one. If the user make a good feedback, he/she will get a discount from the business.
+To check feedback and discounts, business owner has a website so he/she can view the number of feedback and discounts, the answers of each user, and more information about each discount offered.
 
 ### User Stories
 - As a user, I want to make a feedback, so that I can find the nearset businesses and submit my feedback
-- As a user, I want to know the businesses which I submitted my feedback, so that I can find it in feedback screen
+- As a user, I want to view the businesses I have given my feedback to, so that I can find it in feedback screen
 - As a user, I want to know if I got a discount, so that I can find it in discount screen
-- As a user, I want to search for any business, so that I can view its bio and make a feedback
+- As a user, I want to search for any business, so that I can view its bio and give my feedback
+- As a user, I want to find the number of feedback and discounts I have, so that I can view it on my profile screen
+
+- As a business owner, I want to know how many feedback I received, so that I can view it on my home screen
+- As a business owner, I want to know how many discount I offered, so that I can view it on my home screen
+- As a business owner, I want to know the number of feedback per week, month, year, so that I can view it on my home screen in the chart
+- As a business owner, I want to know the number of discount per week, month, year, so that I can view it on my home screen in the chart
+- As a business owner, I want to view users feedback, so that I can know their opinion
+- As a business owner, I want to view the information of the discounts offered including the receiver's name and value, so that I can check it on my discount page
+- As a business owner, I want to edit my profile, so that I can share information about my business
+
 
 <br><br>
 
@@ -43,18 +52,34 @@ Note that i didn't use any styling library or theme, all from scratch and using 
 | ![Profile](./readme/Profile.svg) |  |
 
 
+| Landing  | Home  |                                                
+| -----------------| -----|
+| ![Landing](./readme/login.svg) | ![Home](./readme/homeMockup.svg) | 
+
+| Business  | Feedback  |
+| -----------------| -----|
+| ![Business](./readme/business.svg) | ![Feedback](./readme/feedbackMockup.svg) |
+
+| Discount  | Profile   |
+| -----------------| -----|
+| ![Discount](./readme/discountMockup.png) | ![Profile](./readme/profileMockup.svg)  |
+
+
 <br><br>
 
 <img src="./readme/title4.svg"/>
 
 Here's a brief high-level overview of the tech stack the Well app uses:
 
-- This project uses React Js is a free and open-source front-end JavaScript library for building user interfaces based on UI components. It is maintained by Meta and a community of individual developers and companies.
-- This project uses the React Native is an open-source UI software framework created by Meta Platforms, Inc. It is used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use the React framework along with native platform capabilities
+- This project uses React Js a free and open-source front-end JavaScript library for building user interfaces based on UI components, to implement the business owner panel. 
 
-- For persistent storage (database), the website and application uses the phpmyadmin package which allows the website and application to create a custom storage schema and save it to a local database.
+- This project uses the React Native an open-source UI software framework created by Meta Platforms. It is used to develop applications for Android, Android TV, iOS, macOS, tvOS, Web, Windows and UWP by enabling developers to use the React framework along with native platform capabilities.
 
-- To get the user location, the website and application uses geo location a package used to get the longitude and latitude of te user.
+- For persistent storage (database), the website and application uses the phpmyadmin software tools,intended to handle the administration of MySQL over the Web, and supports a wide range of operations on MySQL, for controlling, and organizing data. 
+
+- To get the user location, the website and application uses geo location a package used to get the longitude and latitude of the user.
+
+- To show the number of feedback, discount in a specific periode of time, the webiste uses rechart package, used to write charts in React applications.
 
 
 <br><br>
@@ -64,16 +89,35 @@ Here's a brief high-level overview of the tech stack the Well app uses:
 
 | Landing  | Home  |
 | -----------------| -----|
-| ![Landing](./readme/login.png) | ![Home](./readme/homeweb.png) |
+| ![Landing](./readme/landingWebsite.png) | ![Home](./readme/used.png) |
 
 | Feedback  | Discount  |
 | -----------------| -----|
-| ![Landing](./readme/feedback.png) | ![Home](./readme/discount.png) |
+| ![Feedback](./readme/feedbackWeb.png) | ![Discount](./readme/discountWeb.jpeg) |
 
-| Profile  |   |
+| Profil  | Edit Profile  |
 | -----------------| -----|
-| ![Profile](./readme/ProfileWebsite.png) |  |
+| ![Profile](./readme/profileWeb.png) | ![Edit Profile](./readme/editProfileWeb.png) |
 
+| Landing  | Home  |                                                
+| -----------------| -----|
+| ![Landing](./readme/login.jpeg) | ![Home](./readme/home.jpeg) | 
+
+| Business  | Feedback Code  |
+| -----------------| -----|
+| ![Business](./readme/business.jpeg) | ![Feedback Code](./readme/code.jpeg) |
+
+| Form  | Search   |
+| -----------------| -----|
+| ![Form](./readme/form.jpeg) | ![Profile](./readme/search.jpeg)  |
+
+| Feedback  | View Feedback  |
+| -----------------| -----|
+| ![Feedback](./readme/feedback.jpeg) | ![Feedback View](./readme/show.jpeg) |
+
+| Discount  | Profile   |
+| -----------------| -----|
+| ![Discount](./readme/discount.jpeg) | ![Profile](./readme/profile.jpeg)  |
 
 
 <br><br>
