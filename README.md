@@ -125,23 +125,77 @@ This is an example of how to list things you need to use the software and how to
   ```sh
   npm install npm@latest -g
   ```
+* Download Xampp [here](https://www.apachefriends.org/download.html)
 
+* Download Composer [here](https://getcomposer.org/download/)
 ### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+1. Open xampp and start Apache and MySQL 
 
-1. Get a free API Key at [https://example.com](https://example.com)
 2. Clone the repo
+
    ```sh
    git clone https://github.com/karamalashkar/yourfeedback.git
    ```
-3. Install NPM packages
+3. Go to backend folder
+
+   ```sh
+   cd .\backend\yourfeedback-server\
+   ```
+4. Rename the .env.example file to .env and put your database name in DB_DATABASE
+
+5. Migrate the database schema
+
+   ```sh
+   php artisan migrate
+   ```
+6. Generate secret key
+
+   ```sh
+    php artisan jwt:secret
+   ```
+7. Install the dependencies   
+
+   ```sh
+    composer install
+   ```
+8. Start the server   
+
+   ```sh
+    php artisan serve
+   ```
+9. Move to frontend folder
+
+   ```sh
+    cd .\frontend\
+   ```
+10. Go to mobile application folder
+
+   ```sh
+   cd .\frontend-application\yourfeedback-application\
+   ```
+11. Install all packages
+
    ```sh
    npm install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+12. Start the application   
+
+   ```sh
+   npm start
    ```
+13. Go to website folder
 
+   ```sh
+   cd .\frontend-website\yourfeedback-website\
+   ```
+14. Install all packages
 
+   ```sh
+   npm install
+   ```
+15. Start the website   
+
+   ```sh
+   npm start
+   ```   
