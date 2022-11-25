@@ -3,12 +3,18 @@ import { styles } from "./style";
 
 const Card = (props) =>{
     return(
-        <Pressable style={styles.card} onPress={props.onPress}>
-            <View style={styles.content}>
+            <View style={styles.component}>
                 <Image source={props.image} style={styles.image} />
-                <Text style={styles.text} >{props.name}</Text>
+                <View style={styles.info}>
+                    <Text style={styles.text} >{props.name}</Text>
+                    <Text style={styles.location}>{props.location}</Text>
+                    <View style={styles.button}>
+                    <Pressable style={styles.press} onPress={props.onPress}>
+                        <Text>View</Text>
+                    </Pressable>
+                    </View>
+                </View>
             </View>    
-        </Pressable>
     )
 }
 
