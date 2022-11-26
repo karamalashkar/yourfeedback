@@ -175,4 +175,20 @@ class UserController extends Controller
             'status' => 'failed'
         ]);
     }
+
+    function recentDiscount(Request $request){
+        $user_id=$request->id;
+        $response=Discount::where('user_id',$user_id)->with('business')->orderBy('created_at','DESC')->first();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed'
+        ]);
+    }
 }
