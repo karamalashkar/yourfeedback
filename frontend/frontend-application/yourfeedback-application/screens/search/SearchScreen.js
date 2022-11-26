@@ -10,7 +10,9 @@ const SearchScreen = () =>{
     const navigation=useNavigation();
     const [business,setBusiness]=useState('')
     const [errorMessage,setErrorMessage]=useState('')
+    const [data,setData]=useState(false)
     const searchBusiness = async(text)=>{
+        setData(true)
         if(!text){
             setErrorMessage('')
             setBusiness('')
@@ -23,7 +25,7 @@ const SearchScreen = () =>{
         }
 
         if(result.data.length==0){
-            setErrorMessage(`No results for ${text}`)
+            setErrorMessage(`Oops! \n No results for ${text}`)
             setBusiness('')
             return null
         }
@@ -35,7 +37,7 @@ const SearchScreen = () =>{
         <>
         <View>
             <View style={styles.search} >
-                <TextInput placeholder="Search" style={styles.input} selectionColor={colors.red}
+                <TextInput placeholder="Markets, Medical Center, Gym ..." style={styles.input} selectionColor={colors.red}
                 onChangeText={ text => searchBusiness(text)} />
             </View>
             <Text style={styles.errorMessage}>{errorMessage}</Text>
