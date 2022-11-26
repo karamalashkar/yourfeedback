@@ -3,18 +3,17 @@ import { colors } from "../../constants/colors";
 
 export const styles=StyleSheet.create({
     search:{
-        width: '100%',
-        height: 70,
-        borderBottomWidth: 3,
-        borderBottomColor: colors.grey
+        alignItems: 'center'
     },
     input:{
-        width: '100%',
-        height: 70,
-        padding: 10,
+        width: '92%',
+        padding: 12,
+        marginTop: 20,
+        marginBottom: 15,
         fontSize: 16,
-        borderBottomWidth: 3,
-        borderBottomColor: colors.grey
+        backgroundColor: colors.white,
+        borderRadius: 10,
+        borderColor: colors.grey
     },
     errorMessage:{
         marginTop: 10,
