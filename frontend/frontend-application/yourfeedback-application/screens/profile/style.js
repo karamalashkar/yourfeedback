@@ -12,7 +12,27 @@ export const styles=StyleSheet.create({
         marginTop: 30,
         maxWidth: '85%'
     },
-    box:{
+    scroll:{
         width: '100%'
-    }
+    },
+    box:{
+        width: '100%',
+        marginTop: 10,
+        display:'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+    },
+    info:{
+        marginLeft: 24
+    },
+    title:{
+        marginVertical: 10,
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    button:{
+        width: '80%',
+        display: 'flex',
+        justifyContent: 'center'
+    },
 })
