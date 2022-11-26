@@ -5,7 +5,7 @@ const Input = (props) =>{
             placeholder={props.text}
             onChange={e => props.setValue(e.target.value)}
             onFocus={() => props.setError('')}
-            className='w-1/2 p-3 my-2 border-2 border-black rounded-xl' />   
+            className='w-3/5 p-3 my-2 border border-gray-300 outline-none bg-white rounded-lg' />   
         </> 
     )
 }
