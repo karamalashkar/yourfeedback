@@ -38,7 +38,7 @@ const Feedback = ()=>{
                 <div className="w-4/5">
                     <Topbar text={'Feedback'} />
                     <div className="w-full flex flex-col bg-red mb-8 lg:flex-row">
-                        <input type='text' placeholder="Name" className="ml-16 p-4 border-2 border-gray-300 outline-0" 
+                        <input type='text' placeholder="Seach for feedback by name" className="ml-16 p-3 w-2/5 shadow-xl rounded-xl outline-0" 
                         onChange={e => setName(e.target.value)}/>
                     </div>
                     <div className="flex flex-wrap justify-evenly">
