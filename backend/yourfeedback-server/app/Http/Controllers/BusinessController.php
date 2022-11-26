@@ -389,5 +389,22 @@ class BusinessController extends Controller{
         }
     }
 
+    function countUsedDiscount(Request $request){
+        $business_id=$request->id;
+        $response=Discount::where('business_id',$business_id)->where('used','1')->count();
+
+        if($response){
+            return response()->json([
+                'status' => 'success',
+                'data' => $response
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'failed',
+            'data' => $response
+        ]);
+    }
+
 }
 
