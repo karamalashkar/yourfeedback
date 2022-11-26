@@ -15,10 +15,11 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->integer('category_id');
-            $table->string('bio')->default('');
+            $table->string('bio')->default('Bio');
             $table->string('image')->default('');
             $table->integer('latitude');
             $table->integer('longitude');
+            $table->string('location')->default('Location');
             $table->integer('feedback_code');
             $table->timestamps();
         });
