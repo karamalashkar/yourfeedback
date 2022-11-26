@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Navbar from "../components/Navbar";
 import Input from "../components/Input";
 import Select from "../components/Select";
 import Button from "../components/Button";
@@ -64,12 +63,11 @@ const Signup = ()=>{
     }
 
     return(
-        <>
-            <Navbar />
-            <div className='flex flex-col align-center xl:flex-row'>
-                <div className='xl:w-5/12 flex flex-col items-center'>
-                    <h1 className='mb-4 text-5xl font-bold'>Sign Up</h1>
-                    <h2 className="my-4 text-lg text-red-700 font-bold">{error}</h2>
+        <div className="w-full h-full fixed bg-gray-100 flex items-center justify-center">
+            <div className='w-4/5 h-4/5 fixed bg-white flex flex-col align-center rounded-lg xl:flex-row drop-shadow-2xl'>
+                <div className="w-2/4 flex flex-col items-center">
+                    <h1 className="mt-12 mb-8 font-bold text-3xl">Sign Up</h1>
+                    <h2 className="text-md text-red-700">{error}</h2>
                     <form onSubmit={signupBusiness} className="w-full flex flex-col items-center">
                         <Input type='text' text='Name' setValue={setName} setError={setError} />
                         <Input type='email' text='Email' setValue={setEmail} setError={setError} />
@@ -80,11 +78,14 @@ const Signup = ()=>{
                         <Button text='Sign Up' />
                     </form>    
                 </div>
-                <div className='my-4 flex justify-center xl:w-7/12'>
-                    <img src='feedback.jpg' className='mt-4 rounded-xl' alt='feedback' />
-                </div>    
+                <div className="w-2/4 h-full bg-red-700 flex flex-col items-center rounded-tr-lg rounded-br-lg">
+                    <img src='darkLogo.png' className='h-1/4 w-2/5 mt-20' alt='feedback' />
+                    <h1 className="text-white text-opacity-80 w-3/4 mt-8">
+                    Feedback occurs when outputs of a system are routed back as inputs as part of a chain of cause-and-effect that forms a circuit or loop. 
+                    </h1>
+                </div>            
             </div>
-        </>
+        </div>     
     )
 }
 
