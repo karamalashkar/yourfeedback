@@ -42,9 +42,10 @@ class BusinessController extends Controller{
         $business_id=$request->business_id;
         $name=$request->name;
         $bio=$request->bio;
+        $location=$request->location;
         $image=$request->image;
 
-        $update=['name'=>$name,'bio'=>$bio];
+        $update=['name'=>$name,'bio'=>$bio,'location'=>$location];
 
         if($image){
             //base 64 to image
