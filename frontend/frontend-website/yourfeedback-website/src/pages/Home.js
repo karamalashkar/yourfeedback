@@ -7,11 +7,13 @@ import { getCountFeedback } from "../api/countFeedback";
 import { getCountDiscount } from "../api/countDiscount";
 import { feedbackPeriode } from "../api/periodeFeedback";
 import { discountPeriode } from "../api/periodeDiscount";
+import { countUsedDiscount } from "../api/countUsedDiscount";
 
 const Home = ()=>{
     const business_id=localStorage.getItem('id');
     const [countF,setCountFeedback]=useState('')
     const [countD,setCountDiscount]=useState('')
+    const [used,setUsed]=useState('')
     const [feedback,setFeedback]=useState('')
     const [discount,setDiscount]=useState('')
     useEffect(()=>{
@@ -23,6 +25,14 @@ const Home = ()=>{
         const countDiscount = async ()=>{
             const result=await getCountDiscount(business_id);
             setCountDiscount(result)
+        }
+
+        const usedDiscount = async ()=>{
+            const result=await countUsedDiscount(business_id);
+            if(result.status=='failed'){
+                setUsed('0')    
+            }
+            setUsed(result.data)
         }
 
         const feedback = async ()=>{
@@ -37,6 +47,7 @@ const Home = ()=>{
 
         countFeedback();
         countDiscount();
+        usedDiscount();
         feedback();
         discount();
     },[])
@@ -52,7 +63,7 @@ const Home = ()=>{
                     <div className="flex flex-col items-center lg:flex-row justify-evenly">
                         <Box text='Feedback' value={countF} />
                         <Box text='Discount' value={countD} />
-                        <Box />
+                        <Box text='Used Discount' value={used}/>
                     </div>
                     <div className="flex flex-col items-center my-12 h-auto w-2/4 lg:flex-row">
                         <Chart text='Feedback' data={feedback} />   
