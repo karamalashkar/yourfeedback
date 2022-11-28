@@ -55,8 +55,7 @@ class BusinessController extends Controller{
             $image_base64 = base64_decode($base64Image[1]);
             $imageName = $business_id.'.'.'png';
             \File::put(public_path('assets'). '/' . $imageName, base64_decode($base64Image[1]));
-            $imageBusiness='http://192.168.1.5:8000/assets/'.$imageName;
-            $update['image']=$imageBusiness;
+            $update['image']=$imageName;
         }    
         
        $business=Business::where('id',$business_id)
