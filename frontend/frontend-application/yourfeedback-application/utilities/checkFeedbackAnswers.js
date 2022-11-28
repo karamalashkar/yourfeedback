@@ -10,12 +10,11 @@ const checkFeedbackAnswer = async(userId, businessId, data) =>{
         //check if answers contains helpful words
         var words=data.response.split(' ');
         for(let i in words){
-            if(helpfulWords.includes(words[i])){
+            if(helpfulWords.includes(words[i].toLowerCase())){
                 discountValue+=0.75
             }
         }
     })}
-
     if(discountValue <= 0){
         return null;
     }
