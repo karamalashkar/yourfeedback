@@ -6,6 +6,7 @@ import Card from "../../components/card/Card";
 import * as Location from 'expo-location';
 import { getBusiness } from "../../api/getBusiness";
 import EmptyState from "../../components/emptystate/EmptyState";
+import { imageBaseURL } from "../../api/base";
 
 const HomeScreen = () =>{
     const navigation=useNavigation();
@@ -68,7 +69,7 @@ const HomeScreen = () =>{
             refreshing={load} onRefresh={home}/>} >
             {Object.values(business).map((business,index)=>{
                 return(
-                    <Card key={index} image={business.image?{uri: business.image}:require('../../assets/market.jpg')} 
+                    <Card key={index} image={business.image?{uri: `${imageBaseURL}${business.image}`}:require('../../assets/market.jpg')} 
                     name={business.name} location={business.location} onPress={()=>navigation.navigate('Business',{
                         id: business.id,
                         image: business.image,
