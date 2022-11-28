@@ -64,11 +64,11 @@ const Signup = ()=>{
 
     return(
         <div className="w-full h-full fixed bg-gray-100 flex items-center justify-center">
-            <div className='w-4/5 h-4/5 fixed bg-white flex flex-col align-center rounded-lg xl:flex-row drop-shadow-2xl'>
-                <div className="w-2/4 flex flex-col items-center">
-                    <h1 className="mt-12 mb-8 font-bold text-3xl">Sign Up</h1>
+            <div className='w-full h-full fixed bg-white flex flex-col-reverse align-center rounded-lg items-center xl:h-4/5 xl:w-4/5 xl:flex-row drop-shadow-2xl'>
+                <div className="w-full flex flex-col items-center justify-center xl:w-2/4">
+                    <h1 className="mb-8 font-bold text-3xl mt-4 xl:mt-0">Sign Up</h1>
                     <h2 className="text-md text-red-700">{error}</h2>
-                    <form onSubmit={signupBusiness} className="w-full flex flex-col items-center">
+                    <form onSubmit={signupBusiness} className="w-full flex flex-col items-center mb-4 xl:mb-0">
                         <Input type='text' text='Name' setValue={setName} setError={setError} />
                         <Input type='email' text='Email' setValue={setEmail} setError={setError} />
                         <h4 className="text-red-700 font-bold">{errorEmail}</h4>
@@ -78,10 +78,11 @@ const Signup = ()=>{
                         <Button text='Sign Up' />
                     </form>    
                 </div>
-                <div className="w-2/4 h-full bg-red-700 flex flex-col items-center rounded-tr-lg rounded-br-lg">
-                    <img src='darkLogo.png' className='h-1/4 w-2/5 mt-20' alt='feedback' />
+                <div className="w-full h-full bg-red-700 flex flex-col items-center rounded-lg xl:w-2/4 rounded-tr-lg rounded-br-lg">
+                    <img src='darkLogo.png' className='h-1/4 w-2/5 mt-4 xl:mt-20' alt='feedback' />
                     <h1 className="text-white text-opacity-80 w-3/4 mt-8">
-                    Feedback occurs when outputs of a system are routed back as inputs as part of a chain of cause-and-effect that forms a circuit or loop. 
+                        Your feedback website is for business owner to start receiving feedback from their 
+                        customer's according to a feedback code. 
                     </h1>
                 </div>            
             </div>
