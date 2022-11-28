@@ -5,6 +5,7 @@ import { useState } from "react";
 import { searchBusinessByName } from "../../api/searchBusiness";
 import SearchItem from "../../components/searchItem/SearchItem";
 import { useNavigation } from "@react-navigation/native";
+import { imageBaseURL } from "../../api/base";
 
 const SearchScreen = () =>{
     const navigation=useNavigation();
@@ -44,7 +45,7 @@ const SearchScreen = () =>{
             <ScrollView>
                 {Object.values(business).map((business)=>{
                     return(
-                        <SearchItem key={business.id} image={business.image? {uri: business.image}:require('../../assets/market.jpg')} name={business.name} onPress={()=>navigation.push('Business',{
+                        <SearchItem key={business.id} image={business.image? {uri: `${imageBaseURL}${business.image}`}:require('../../assets/market.jpg')} name={business.name} onPress={()=>navigation.push('Business',{
                             id: business.id,
                             name: business.name, 
                             bio: business.bio,
