@@ -130,7 +130,7 @@ class UserController extends Controller
 
     function getFeedback(Request $request){
         $user_id=$request->id;
-        $response=Feedback::where('user_id',$user_id)->with('business')->get()->groupBy('survey_id');
+        $response=Feedback::where('user_id',$user_id)->with('business')->with('question')->orderBy('created_at','DESC')->distinct('survey_id')->get()->groupBy('survey_id');
 
         if($response){
             return response()->json([
