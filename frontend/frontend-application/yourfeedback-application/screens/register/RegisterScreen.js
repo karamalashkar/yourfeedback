@@ -55,24 +55,28 @@ const RegisterScreen = () =>{
 
     return(
         <View style={styles.component}>
-            <Image source={require('../.././assets/logo.png')} style={styles.image}/>
-            <Text style={styles.text}>Sign Up</Text>
-            <Text style={styles.errorMessage}>{errorMessage}</Text>
-            <Input placeholder='Name' state={false} 
-            setValue={setName} 
-            setError={setErrorMessage}/>
-            
-            <Input placeholder='Email' 
-            state={false} errorMessage={errorEmail} 
-            setValue={setEmail} 
-            setError={setErrorMessage}/>
+            <View style={styles.body}>
+                <Image source={require('../.././assets/logo.png')} style={styles.image}/>
+                <Text style={styles.errorMessage}>{errorMessage}</Text>
+                <View style={styles.form}>
+                    <Text style={styles.text}>Create your new Account</Text>
+                    <Input placeholder='Name' state={false} 
+                    setValue={setName} 
+                    setError={setErrorMessage}/>
+                    
+                    <Input placeholder='Email' 
+                    state={false} errorMessage={errorEmail} 
+                    setValue={setEmail} 
+                    setError={setErrorMessage}/>
 
-            <Input placeholder='Password' 
-            state={true} setValue={setPassword} 
-            errorMessage={errorPassword} 
-            setError={setErrorMessage}/>
-            
-            <Button text='Signup' onPress={registerUser} />
+                    <Input placeholder='Password' 
+                    state={true} setValue={setPassword} 
+                    errorMessage={errorPassword} 
+                    setError={setErrorMessage}/>
+                    
+                    <Button text='Signup' onPress={registerUser} />
+                </View>
+            </View>
         </View>        
     )
 }
