@@ -23,7 +23,7 @@ Route::group(["prefix"=> "v1"], function(){
             Route::get('/search_business/{word}',[BusinessController::class,'searchBusiness']);
             Route::get('/make_feedback/{id}/{business_id}',[BusinessController::class,'canMakeFeedback']);
             Route::get('/recent_feedback/{id}',[UserController::class,'recentFeedback']);
-            Route::get('/used_discount/{id}',[BusinessController::class,'countUsedDiscount']);
+            Route::get('/recent_discount/{id}',[UserController::class,'recentDiscount']);
         });
     });
 
