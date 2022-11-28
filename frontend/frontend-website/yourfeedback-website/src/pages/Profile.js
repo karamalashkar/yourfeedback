@@ -38,13 +38,13 @@ const Profile = ()=>{
                     <Editprofile open={isOpen} onClose={()=>setOpen(false)} />
                     <div className="w-full h-auto flex items-center justify-center">
                         <div className="h-auto w-4/5 flex flex-col rounded-tr-xl rounded-br-xl lg:flex-row my-12 items-center bg-white">
-                            <img src={image} alt='profile picture' className="w-2/4 h-96 rounded-tl-xl rounded-bl-xl shadow-2xl" />
-                            <div className="ml-8 flex-col items-start xl:w-2/4 bg-white">
+                            <img src={`http://192.168.1.8:8000/assets/${image}`} alt='profile picture' className="w-4/4 h-96 rounded-tl-xl rounded-bl-xl shadow-2xl xl:w-2/4" />
+                            <div className="w-full mt-4 ml-8 flex-col items-start xl:w-2/4 bg-white">
                                 <h1 className="text-3xl font-bold">{name}</h1>
                                 <p className="mt-8 max-w-md h-auto text-lg">{bio}</p>
                                 <h2 className='my-4 text-lg'>Location: <span className="font-bold">{location}</span></h2>
                                 <h2 className='my-4 text-lg'>Feedback Code: <span className="font-bold">{feedbackCode}</span></h2>
-                                <button onClick={()=>setOpen(true)} className='w-1/2 p-3 mt-4 bg-red-700 text-white font-bold rounded-xl'>Edit Profile</button>    
+                                <button onClick={()=>setOpen(true)} className='mb-4 w-1/2 p-3 mt-4 bg-red-700 text-white font-bold rounded-xl xl:mb-0'>Edit Profile</button>    
                             </div>
                         </div>
                     </div>
