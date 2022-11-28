@@ -22,11 +22,9 @@ const FormScreen = ({route}) =>{
     const [errorMessage,setErrorMessage]=useState('')
     const result={}
     useEffect(()=>{
-        console.log('categ',categoryId)
         const getFeedbackQuestion = async () =>{
             const response=await getQuestion(categoryId);
             setQuestion(response)
-            console.log('question',question)
         }
 
         getFeedbackQuestion();
