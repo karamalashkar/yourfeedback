@@ -6,6 +6,7 @@ import { useState } from "react";
 import Popup from "../../components/popup/Popup";
 import { canMakeFeedback } from "../../api/canMakeFeedback";
 import { store } from "../../redux/Store";
+import { imageBaseURL } from "../../api/base";
 
 const BusinessScreen = ({route}) =>{
     const navigation=useNavigation();
@@ -25,7 +26,6 @@ const BusinessScreen = ({route}) =>{
                 return null
             }
             const response=await canMakeFeedback(userId,businessId);
-            console.log(businessId)
             if(response.status=='success'){
                 if(response.data.length!=0){
                     setError('You can make one feedback by month')
@@ -50,7 +50,7 @@ const BusinessScreen = ({route}) =>{
 
     return(
         <>
-            <Image source={route.params.image?{uri: route.params.image}:require('../../assets/market.jpg')} style={styles.image} />
+            <Image source={route.params.image?{uri: `${imageBaseURL}${route.params.image}`}:require('../../assets/market.jpg')} style={styles.image} />
             <View style={styles.content}>
                 <Text style={styles.body}>{route.params.bio}</Text>
             </View>
